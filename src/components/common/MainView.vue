@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import HeaderView from "@/components/common/HeaderView.vue";
 import Section1View from "@/components/common/item/Section1View.vue";
 import Section2View from "@/components/common/item/Section2View.vue";
 import Section3View from "@/components/common/item/Section3View.vue";
@@ -61,6 +62,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <HeaderView/>
   <Section1View />
   <Section2View />
   <Section3View />
@@ -68,21 +70,4 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.content {
-  width: 100%;
-  height: 100%;
-  /* background-color: blueviolet; */
-
-  position: relative;
-}
-.content > h1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  font-size: 20em;
-  font-weight: bold;
-  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
-}
 </style>

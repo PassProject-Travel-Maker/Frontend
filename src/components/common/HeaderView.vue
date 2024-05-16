@@ -15,10 +15,13 @@
 <style scoped>
 #header {
   width: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 10;
 }
 #header_right {
   margin-left: auto;
