@@ -6,8 +6,9 @@ import HeaderView from "@/components/common/HeaderView.vue";
   <div class="content">
     <img id="section1" src="@/assets/img/people.svg" />
     <div id="title_box">
-      <div id="title">여행을 계획하는 <br />가장 쉬운 방법.</div>
-      <div id="subtitle">몇 번의 클릭으로 완벽한 여행 경로를 설계하세요.</div>
+      <div id="title">자, 출발해볼까요?</div>
+      <div id="subtitle">당신의 완벽한 여행이 기다리고 있습니다.</div>
+      <button>Get Started <img src="@/assets/img/arrow.svg" /></button>
     </div>
   </div>
 </template>
@@ -22,14 +23,22 @@ import HeaderView from "@/components/common/HeaderView.vue";
 
 #section1 {
   position: absolute;
+  width: 40%;
   top: 10%;
+  left:50%;
+  transform:translateX(-50%);
 }
 #title_box {
-  font-size: 60px;
-  position: absolute;
-  top: 40%;
-  left: 15%;
+  position: absolute; 
+  bottom: 5%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size: 40px;
   font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 #subtitle {
   font-size: 20px;
@@ -40,9 +49,19 @@ import HeaderView from "@/components/common/HeaderView.vue";
 #title {
   margin-bottom: 30px;
 }
-#grid {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 155px;
+  height: 48px;
+  background-color: #1D4ED8;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+  border: none;
+  margin-top: 20px;
 }
 </style>

@@ -8,8 +8,7 @@ import HeaderView from "@/components/common/HeaderView.vue";
       <div id="title">새로운 여행이 기다리고 있어요!</div>
       <div id="subtitle">전 세계 어디로든, 완벽한 여행 계획을 지금 바로 <br />시작해보세요.</div>
     </div>
-    <img id="phone" src="@/assets/img/iPhone XR.svg" />
-    <img id="plan" src="@/assets/img/plan.svg" />
+    <img id="phone" src="@/assets/img/phone.svg" />
   </div>
 </template>
 
@@ -22,13 +21,8 @@ import HeaderView from "@/components/common/HeaderView.vue";
 }
 #phone {
   position: absolute;
-  top: 15%;
-  right: 7%;
-}
-#plan {
-  position: absolute;
-  top: 30%;
-  right: 18.3%;
+  top: 10%;
+  right: 0;
 }
 #title_box {
   font-size: 60px;

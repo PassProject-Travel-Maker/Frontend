@@ -5,7 +5,7 @@ import Section2View from "@/components/common/item/Section2View.vue";
 import Section3View from "@/components/common/item/Section3View.vue";
 import Section4View from "@/components/common/item/Section4View.vue";
 const page = ref(1);
-const lastPage = ref(0); // Update this value with the actual last page count
+const lastPage = ref(4);
 
 const scrollTo = (element, to, duration) => {
   const start = element.scrollTop;
@@ -44,8 +44,10 @@ onMounted(() => {
     if ($html.classList.contains("animated")) return;
 
     if (e.deltaY > 0) {
+      console.log(e.deltaY)
       if (page.value === lastPage.value) return;
       page.value++;
+
     } else if (e.deltaY < 0) {
       if (page.value === 1) return;
       page.value--;
