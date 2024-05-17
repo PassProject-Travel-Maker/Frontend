@@ -12,7 +12,9 @@
   "dependencies": {
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2", 
+    "jwt-decode": "^4.0.0",
+    "axios": "^1.6.8"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
