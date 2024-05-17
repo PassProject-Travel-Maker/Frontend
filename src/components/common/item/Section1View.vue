@@ -1,6 +1,4 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
   <div class="content">
@@ -10,7 +8,9 @@
       <br />
       <span>당신만의 맞춤 여행 경로로 더 특별한 추억을 만드세요.</span>
       <br />
-      <button>Get Started <img src="@/assets/img/arrow.svg" /></button>
+      <RouterLink :to="{ name: 'map' }">
+        <button>Get Started <img src="@/assets/img/arrow.svg" /></button>
+      </RouterLink>
     </div>
     <img id="card1" src="@/assets/img/Card 1.svg" />
     <img id="card2" src="@/assets/img/Card 2.svg" />
