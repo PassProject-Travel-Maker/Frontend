@@ -8,7 +8,7 @@ import HeaderView from "@/components/common/HeaderView.vue";
     <div id="title_box">
       <div id="title">자, 출발해볼까요?</div>
       <div id="subtitle">당신의 완벽한 여행이 기다리고 있습니다.</div>
-      <button>Get Started <img src="@/assets/img/arrow.svg" /></button>
+      <button class="px-3 py-1.5 text-sm font-semibold shadow-sm bg-yellow-400 hover:bg-yellow-500">Get Started <img src="@/assets/img/arrow.svg" /></button>
     </div>
   </div>
 </template>
@@ -56,8 +56,8 @@ button {
   gap: 6px;
   width: 155px;
   height: 48px;
-  background-color: #1D4ED8;
-  color: #ffffff;
+  /* background-color: #1D4ED8; */
+  /* color: #ffffff; */
   font-weight: 700;
   border-radius: 5px;
   font-family: "Roboto", sans-serif;
