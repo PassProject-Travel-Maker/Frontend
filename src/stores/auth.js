@@ -3,8 +3,8 @@ import { defineStore } from "pinia";
 import authApi from "@/apis/authApi";
 import { jwtDecode } from "jwt-decode";
 
-export const useAuthStore = ("auth", () => {
-  const token = ref(null);defineStore
+export const useAuthStore = defineStore("auth", () => {
+  const token = ref(null);
   const user = ref(null);
 
   const join = async (joinInfo) => {
