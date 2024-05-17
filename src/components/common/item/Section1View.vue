@@ -10,7 +10,7 @@
       <br />
       <span>당신만의 맞춤 여행 경로로 더 특별한 추억을 만드세요.</span>
       <br />
-      <button>Get Started <img src="@/assets/img/arrow.svg" /></button>
+      <button class="px-3 py-1.5 text-sm font-semibold shadow-sm bg-yellow-400 hover:bg-yellow-500">Get Started <img src="@/assets/img/arrow.svg" /></button>
     </div>
     <img id="card1" src="@/assets/img/Card 1.svg" />
     <img id="card2" src="@/assets/img/Card 2.svg" />
