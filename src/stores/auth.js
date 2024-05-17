@@ -21,6 +21,7 @@ export const useAuthStore = defineStore("auth", () => {
     //토큰 정보 및 유저 정보 세팅
     token.value = response.data;
     user.value = jwtDecode(token.value);
+    console.log(user.value);
   };
 
   const logout = () => {
