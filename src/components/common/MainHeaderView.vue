@@ -2,15 +2,17 @@
 
 <template>
   <div id="header">
-    <RouterLink to="/">
-      <img src="@/assets/img/icon.svg" />
-    </RouterLink>
-    <RouterLink to="/">
-      <img src="@/assets/img/title.svg" />
-    </RouterLink>
+    <div id="logocontainer">
+      <RouterLink to="/">
+        <img src="@/assets/img/icon.svg" />
+      </RouterLink>
+      <RouterLink to="/">
+        <img src="@/assets/img/title.svg" />
+      </RouterLink>
+    </div>
     <div id="header_right">
       <RouterLink to="/signin">Sign in</RouterLink>
-      <RouterLink to="/signup">Create free account</RouterLink>
+      <RouterLink to="/signup"><button>Create free account</button></RouterLink>
     </div>
   </div>
 </template>
@@ -33,5 +35,25 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+button {
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #18181b;
+  height: 45px;
+  width: 154px;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #18181b;
+}
+#logocontainer {
+  margin-left: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

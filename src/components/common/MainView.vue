@@ -61,7 +61,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <MainHeaderView />
   <Section1View />
   <Section2View />
   <Section3View />
