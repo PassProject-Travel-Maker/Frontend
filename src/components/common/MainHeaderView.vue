@@ -1,6 +1,21 @@
-<script setup></script>
+<script setup>
+import { useAuthStore } from "@/stores/auth";
+import { storeToRefs } from "pinia";
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+const logout = () => {
+  if (!confirm("로그아웃 하시겠습니까?")) return;
+  authStore.logout();
+  router.push("/"); //홈으로
+};
+</script>
 
 <template>
+  <!-- Logo -->
   <div id="header">
     <div id="logocontainer">
       <RouterLink to="/">
@@ -10,9 +25,15 @@
         <img src="@/assets/img/title.svg" />
       </RouterLink>
     </div>
-    <div id="header_right">
+
+    <!-- Sign in & Sign up -->
+    <div id="header_right" v-if="authStore.user === null">
       <RouterLink to="/signin">Sign in</RouterLink>
       <RouterLink to="/signup"><button>Create free account</button></RouterLink>
+    </div>
+    <div id="header_right" v-else>
+      <RouterLink to="/mypage">MyPage</RouterLink>
+      <p @click="logout">Sign out</p>
     </div>
   </div>
 </template>

@@ -3,8 +3,8 @@ import { defineStore } from "pinia";
 import authApi from "@/apis/authApi";
 import { jwtDecode } from "jwt-decode";
 
-export const useAuthStore = ("auth", () => {
-  const token = ref(null);defineStore
+export const useAuthStore = defineStore("auth", () => {
+  const token = ref(null);
   const user = ref(null);
 
   const join = async (joinInfo) => {
@@ -21,6 +21,7 @@ export const useAuthStore = ("auth", () => {
     //토큰 정보 및 유저 정보 세팅
     token.value = response.data;
     user.value = jwtDecode(token.value);
+    console.log(user.value);
   };
 
   const logout = () => {
