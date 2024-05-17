@@ -3,8 +3,8 @@ import MainView from "@/components/common/MainView.vue";
 import SignupView from "@/components/member/views/SignupView.vue";
 import SigninView from "@/components/member/views/SigninView.vue";
 import MyPageView from "@/components/member/views/MyPageView.vue";
+import MapView from "@/components/map/views/MapView.vue";
 import { createRouter, createWebHistory } from "vue-router";
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -32,6 +32,11 @@ const router = createRouter({
           path: "/mypage",
           name: "mypage",
           component: MyPageView,
+        },
+        {
+          path: "/map",
+          name: "map",
+          component: MapView,
         },
       ],
     },
