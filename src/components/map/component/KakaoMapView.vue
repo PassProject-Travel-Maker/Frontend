@@ -1,37 +1,37 @@
 <script setup>
 
-import { KakaoMap, KakaoMapMarker } from "vue3-kakao-maps";
+import { KakaoMap, KakaoMapMarker } from 'vue3-kakao-maps';
 import SelectOptionView from "@/components/map/component/SelectOptionView.vue";
 import AreaListItem from "@/components/map/component/AreaListItem.vue";
+import MapModal from "@/components/map/component/MapModal.vue";
 import {useCategoryMapStore} from '@/stores/map.js';
 import {storeToRefs} from 'pinia';
-import { watch,ref } from "vue";
+import { ref } from "vue";
+import {usePlanStore} from '@/stores/plan.js';
 
-const store = useCategoryMapStore();
-const {areas,location} = storeToRefs(store);
+
+const planstore= usePlanStore();
+const {setPlan} = planstore;
+
+
+const mapstore = useCategoryMapStore();
+const {areas,location} = storeToRefs(mapstore);
 
 const map = ref();
-
+const isShow = ref(false);
+const area=ref({});
 const onLoadKakaoMap = (mapRef) => {
   map.value = mapRef;
 };
 
-watch(
-  () => areas.value,
-  () => {
-    panTo();
-  }
-);
-
-const panTo = () => {
-  if (map.value) {
-    // 지도 중심을 부드럽게 이동시킵니다
-    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-    map.value.panTo(new kakao.maps.LatLng(location.value.latitude, location.value.longitude));
-  }
+const onClickMapMarker = (eventarea,index) => {
+   area.value=areas.value[index];
+   isShow.value=true;
 };
 
-
+const close = () => {
+  isShow.value = false;
+};
 </script>
 
 <template>
@@ -39,7 +39,7 @@ const panTo = () => {
 
      <SelectOptionView/>
 
-     <KakaoMap :lat="33.450705" :lng="126.570667" 
+     <KakaoMap :lat="location.latitude" :lng="location.longitude" 
      @onLoadKakaoMap="onLoadKakaoMap"
      :draggable="true"
      level=7
@@ -50,13 +50,25 @@ const panTo = () => {
       :key="area.id === undefined ? index : area.id"
       :lat="area.latitude"
       :lng="area.longitude"
-    />
+      :clickable="true"
+      @onClickKakaoMapMarker="onClickMapMarker(area,index)"
+      
+    >
+    </KakaoMapMarker>
+
     </KakaoMap>
+    <MapModal
+    :area="area"
+    v-show="isShow"
+    @close="close"
+    :class="{ show: isShow }"
+  ></MapModal>
     </div>
     <ul role="list" class="divide-y divide-gray-100">
       <AreaListItem v-for="(area) in areas"
     :key="area.id"
     :area=area
+    @click="setPlan(area)"
     />
   </ul>
 </template>

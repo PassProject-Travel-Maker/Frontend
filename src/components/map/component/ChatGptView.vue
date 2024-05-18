@@ -3,11 +3,5 @@
 </script>
 
 <template>
-    <div>
-        gpt뷰
-    </div>
+<div>gpt에게 물어보기</div>
 </template>
-
-<style scoped>
-
-</style>

@@ -9,8 +9,8 @@ const sidos = ref([]);
 const guguns = ref([]);
 const areas = ref([]);
 const location =ref({
-  latitude : 0,
-  longitude : 0
+  latitude : 33.450705,
+  longitude : 126.570667
 });
 
 
@@ -44,6 +44,11 @@ const getAttraction = async(searchData) =>{
   console.log(lat + " " + lng);
   location.value.latitude=lat;
   location.value.longitude=lng;
+  areas.value = areas.value.map(area => ({
+    ...area,
+    visible: false
+  }));
+  console.log(areas)
 
 }
 

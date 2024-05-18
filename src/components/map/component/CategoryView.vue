@@ -27,7 +27,7 @@ const categories = ref({
 </script>
 
 <template>
-  <div class="w-full  px-2 mt-10 sm:px-0" style="width : 70%">
+  <div class="w-full  px-2 mt-10 sm:px-0" style="width : 100%">
     <TabGroup>
       <TabList class="flex space-x-1 rounded-xl bg-slate-800 /20 p-1">
         <Tab
