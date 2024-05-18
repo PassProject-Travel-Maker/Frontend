@@ -2,6 +2,8 @@
 import { ref } from 'vue'
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import KakaoMapView from "@/components/map/component/KakaoMapView.vue";
+import KakaoMapSearhView from "@/components/map/component/KakaoMapSearhView.vue";
+import ChatGptView from "@/components/map/component/ChatGptView.vue";
 const categories = ref({
   "카테고리 별 검색": [
     {
@@ -54,7 +56,15 @@ const categories = ref({
           :key="idx"
           class="mt-10"
         >
-        <KakaoMapView :category="Object.keys(categories)[idx]" />
+        <div v-if="categories[Object.keys(categories)[idx]][0].type === 'category'">
+            <KakaoMapView/>
+          </div>
+          <div v-else-if="categories[Object.keys(categories)[idx]][0].type === 'search'">
+            <KakaoMapSearhView/>
+          </div>
+          <div v-else-if="categories[Object.keys(categories)[idx]][0].type === 'gpt'">
+            <ChatGptView/>
+          </div>
         </TabPanel>
       </TabPanels>
     </TabGroup>

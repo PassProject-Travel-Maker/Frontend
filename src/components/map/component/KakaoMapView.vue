@@ -2,10 +2,10 @@
 
 import { KakaoMap, KakaoMapMarker } from "vue3-kakao-maps";
 import SelectOptionView from "@/components/map/component/SelectOptionView.vue";
+import AreaListItem from "@/components/map/component/AreaListItem.vue";
 import {useCategoryMapStore} from '@/stores/map.js';
 import {storeToRefs} from 'pinia';
-import { onMounted, watch,ref } from "vue";
-const { VITE_KAKAO_MAP_API_KEY } = import.meta.env;
+import { watch,ref } from "vue";
 
 const store = useCategoryMapStore();
 const {areas,location} = storeToRefs(store);
@@ -22,14 +22,6 @@ watch(
     panTo();
   }
 );
-
-
-onMounted( ()=>{
-  const script = document.createElement("script");
-    script.src =
-      `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${VITE_KAKAO_MAP_API_KEY}`;
-    document.head.appendChild(script);
-})
 
 const panTo = () => {
   if (map.value) {
@@ -50,7 +42,7 @@ const panTo = () => {
      <KakaoMap :lat="33.450705" :lng="126.570667" 
      @onLoadKakaoMap="onLoadKakaoMap"
      :draggable="true"
-     level=6
+     level=7
      width=95% height=80%  
      style="margin : 0 auto">
       <KakaoMapMarker
@@ -61,6 +53,12 @@ const panTo = () => {
     />
     </KakaoMap>
     </div>
+    <ul role="list" class="divide-y divide-gray-100">
+      <AreaListItem v-for="(area) in areas"
+    :key="area.id"
+    :area=area
+    />
+  </ul>
 </template>
 
 <style scoped>
