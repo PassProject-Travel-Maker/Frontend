@@ -1,11 +1,12 @@
 // 여기다가 axios instance 생성
+import axios from "axios";
 
-export const BASE_URL = "http://localhost:8000/api";
+export const BASE_URL = "http://localhost:8080/api/";
 
 const config = {
   baseURL: BASE_URL,
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": 'application/json'
   },
 };
 export const api = axios.create(config);

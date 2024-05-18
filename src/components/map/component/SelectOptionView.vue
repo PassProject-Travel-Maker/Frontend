@@ -1,63 +1,37 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
+import {useCategoryMapStore} from '@/stores/map.js';
+import {storeToRefs} from 'pinia';
+const store = useCategoryMapStore();
+const {sidos , guguns} = storeToRefs(store);
+const { getSido,getGugun,getAttraction } = store;
 
-const sidos = ref([]);
-const guguns = ref([]);
 const searchData = ref({
-  areaCode: "0",
+  sidoCode: "0",
   gugunCode: "0",
-  contentTypeId: "0",
+  attarctionId: "0",
   keyword: "",
 });
-const areas = ref([]);
 
-// onMounted(() => {
-//   getSido();
-// });
-
-// const init = () => {
-//   searchData.value.gugunCode = 0;
-// };
-
-// const getSido = () => {
-//   http.get("sido").then((response) => {
-//     sidos.value = response.data;
-//   });
-// };
-
-// const sidoWatch = watch(
-//   () => searchData.value.areaCode,
-//   () => {
-//     init();
-//     getGugun();
-//   },
-//   {
-//     deep: true,
-//   }
-// );
-
-// const getGugun = () => {
-//   http.get(`gugun/${searchData.value.areaCode}`).then((response) => {
-//     guguns.value = response.data;
-//   });
-// };
-
-// const search = () => {
-//   http.post("attractioninfo", searchData.value).then((response) => {
-//     areas.value = response.data;
-//     console.log(areas);
-//   });
-// };
-
-const clickInfo = ref({
-  la: 0,
-  ma: 0,
+onMounted(() => {
+  getSido()
 });
 
-const clickArea = (la, ma) => {
-  console.log(la + " " + ma);
-  clickInfo.value.la = la;
-  clickInfo.value.ma = ma;
+const init = () => {
+  searchData.value.gugunCode = 0;
+};
+
+watch(
+  () => searchData.value.sidoCode,
+  () => {
+    init();
+    console.log(searchData.value.sidoCode)
+    getGugun(searchData.value.sidoCode);
+  }
+);
+
+const search = () => {
+    getAttraction(searchData.value)
 };
 </script>
 
@@ -67,7 +41,7 @@ const clickArea = (la, ma) => {
         id="search-area"
         class="form-select me-2"
         name="sidoCode"
-        v-model="searchData.areaCode"
+        v-model="searchData.sidoCode"
       >
         <option value="0">검색 할 지역 선택</option>
         <option v-for="sido in sidos" :key="sido.sidoCode" :value="sido.sidoCode">
@@ -85,7 +59,8 @@ const clickArea = (la, ma) => {
           {{ gugun.gugunName }}
         </option>
       </select>
-      <select id="search-content-id" class="form-select me-2" v-model="searchData.contentTypeId">
+
+      <select id="search-content-id" class="form-select me-2" v-model="searchData.attarctionId">
         <option value="0" selected>관광지 유형</option>
         <option value="12">관광지</option>
         <option value="14">문화시설</option>
