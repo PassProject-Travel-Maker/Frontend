@@ -2,8 +2,6 @@
 import MainHeaderView from "@/components/common/MainHeaderView.vue";
 import SubHeaderView from "@/components/common/SubHeaderView.vue";
 import { useRoute } from "vue-router";
-import { useAuthStore } from "@/stores/auth";
-import { computed } from "vue";
 
 const route = useRoute();
 </script>
@@ -16,4 +14,6 @@ const route = useRoute();
   <RouterView />
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>

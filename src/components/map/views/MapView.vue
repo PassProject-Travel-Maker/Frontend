@@ -1,13 +1,19 @@
 <script setup>
 import PlanForm from "@/components/map/component/PlanFormView.vue";
-import KakaoMapView from "@/components/map/component/KakaoMapView.vue";
+import CategoryView from "@/components/map/component/CategoryView.vue";
 </script>
 
 <template>
-  <div>
+  <div id="container">
     <PlanForm />
-    <KakaoMapView />
+    <CategoryView/>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+#container{
+  width: 80%;
+  height: 1000px;
+  margin : 0 auto;
+}
+</style>

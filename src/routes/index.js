@@ -10,7 +10,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "main",
+      name: "header",
       component: HeaderView,
       children: [
         {

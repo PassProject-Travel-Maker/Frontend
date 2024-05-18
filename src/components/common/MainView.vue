@@ -1,6 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import MainHeaderView from "@/components/common/MainHeaderView.vue";
+import { ref, onMounted,onUnmounted } from "vue";
 import Section1View from "@/components/common/item/Section1View.vue";
 import Section2View from "@/components/common/item/Section2View.vue";
 import Section3View from "@/components/common/item/Section3View.vue";
@@ -35,29 +34,33 @@ const easeInOutQuad = (t, b, c, d) => {
   return (-c / 2) * (t * (t - 2) - 1) + b;
 };
 
-onMounted(() => {
+const handleWheel = (e) => {
   const $html = document.querySelector("html");
   const windowHeight = window.innerHeight;
 
-  $html.scrollTop = 0;
+  if ($html.classList.contains("animated")) return;
 
-  window.addEventListener("wheel", (e) => {
-    if ($html.classList.contains("animated")) return;
+  if (e.deltaY > 0) {
+    if (page.value === lastPage.value) return;
+    page.value++;
+  } else if (e.deltaY < 0) {
+    if (page.value === 1) return;
+    page.value--;
+  }
 
-    if (e.deltaY > 0) {
-      console.log(e.deltaY);
-      if (page.value === lastPage.value) return;
-      page.value++;
-    } else if (e.deltaY < 0) {
-      if (page.value === 1) return;
-      page.value--;
-    }
+  const posTop = (page.value - 1) * windowHeight;
+  $html.classList.add("animated");
+  scrollTo($html, posTop, 600); // Adjust the animation duration as needed
+};
 
-    const posTop = (page.value - 1) * windowHeight;
-    $html.classList.add("animated");
-    scrollTo($html, posTop, 600); // Adjust the animation duration as needed
-  });
+onMounted(() => {
+  document.addEventListener("wheel", handleWheel);
 });
+
+onUnmounted(() => {
+  document.removeEventListener("wheel", handleWheel);
+});
+
 </script>
 
 <template>
