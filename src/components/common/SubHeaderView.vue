@@ -1,6 +1,5 @@
 <script setup>
 import { useAuthStore } from "@/stores/auth";
-import { computed } from "vue";
 import { useRouter } from "vue-router";
 
 const authStore = useAuthStore();
@@ -44,6 +43,7 @@ const logout = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 #header_right {
   margin-left: auto;

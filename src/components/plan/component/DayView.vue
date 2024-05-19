@@ -4,7 +4,7 @@
 
 <template>
     <div>
-        GPT에게 물어보기
+        1일차
     </div>
 </template>
 

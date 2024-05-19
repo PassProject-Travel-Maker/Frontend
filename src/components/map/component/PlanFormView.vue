@@ -1,7 +1,10 @@
 <script setup>
-import { ref } from "vue";
-const title = ref("");
-const description = ref("");
+import {storeToRefs} from 'pinia';
+import {usePlanStore} from '@/stores/plan.js';
+
+const planStore = usePlanStore();
+const {title, description} = storeToRefs(planStore);
+
 </script>
 
 <template>

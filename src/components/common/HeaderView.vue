@@ -9,8 +9,6 @@ const route = useRoute();
 <template>
   <MainHeaderView v-if="route.name === 'main'" />
   <SubHeaderView v-else />
-  <!-- <MainHeaderView v-if="user == null" />
-  <SubHeaderView v-else /> -->
   <RouterView />
 </template>
 

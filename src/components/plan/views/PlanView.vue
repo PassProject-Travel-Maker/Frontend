@@ -1,26 +1,47 @@
 <script setup>
 import PlanItem from '@/components/plan/component/PlanItem.vue'
 import {storeToRefs} from 'pinia';
-import { ref } from "vue";
 import {usePlanStore} from '@/stores/plan.js';
 import Draggable from "vue3-draggable";
+import {ref} from 'vue';
 
+const mode = ref(false);
 const planstore= usePlanStore();
-const {plans} = storeToRefs(planstore);
+const {addDay} = planstore;
+const {dayForPlanDtoList,picked,pickedindex} = storeToRefs(planstore);
 
-console.log(plans);
+const changeMode = () =>{
+mode.value=!mode.value;
+}
 </script>
-
 <template>
         <h2>여행 일정</h2>
-        <ul>  
-          <PlanItem v-for="(plan) in plans" :key="plan" :plan="plan"/>
+        <div v-for="(day) in dayForPlanDtoList" :key="day.num">
+        <input type="radio" name="sex" :value="day.num" v-model="picked" checked/>
+        <span> {{day.num}} 일차</span>
+        </div>
+        <div @click="addDay">날짜 추가</div>
+        <ul v-if="mode">
+        <draggable v-model="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList">
+        <template v-slot:item="{ item }">
+          <PlanItem :plan="item"/>
+        </template>
+      </draggable>
+          </ul>
+        <ul v-else>
+          <PlanItem v-for="(plan) in dayForPlanDtoList[pickedindex].scheduleForPlanDtoList" :key="plan" :plan="plan"/>
         </ul>
+
         <br>
 
-        <div v-if="plans.length===0">여행지를 선택해주세요!</div>
+        <div v-if="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length===0">여행지를 선택해주세요!</div>
         <div class="button_box" v-else>
-          <div></div>
+           <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-auto" @click="changeMode" v-if="mode">
+            돌아가기
+          </button>
+          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-auto" @click="changeMode" v-else>
+            순서바꾸기
+          </button>
             <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             저장
           </button>
