@@ -15,7 +15,6 @@ export const getCategoryApi = async(sidoCode) =>{
     return response;
 }
 
-
 export const getAttractionApi = async(searchData) =>{
     const response = await api.post('map/attractioninfo',searchData);
     return response;

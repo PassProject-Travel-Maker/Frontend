@@ -1,6 +1,6 @@
 import { ref, } from 'vue'
 import { defineStore } from 'pinia'
-import { getGugunApi, getSidoApi,getAttractionApi } from '@/apis/map';
+import { getGugunApi, getSidoApi,getAttractionApi } from '@/apis/mapApi';
 export const useCategoryMapStore = defineStore('category', () => {
  
 
