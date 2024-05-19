@@ -2,6 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import authApi from "@/apis/authApi";
 import { jwtDecode } from "jwt-decode";
+import {setLocalStorage} from '@/utils/localstorage'
 
 export const useAuthStore = defineStore("auth", () => {
   const token = ref(null);
@@ -20,6 +21,7 @@ export const useAuthStore = defineStore("auth", () => {
 
     //토큰 정보 및 유저 정보 세팅
     token.value = response.data;
+    setLocalStorage(token.value);
     user.value = jwtDecode(token.value);
     console.log(user.value);
   };
