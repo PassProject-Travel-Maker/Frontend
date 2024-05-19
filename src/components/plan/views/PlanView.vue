@@ -3,19 +3,24 @@ import PlanItem from '@/components/plan/component/PlanItem.vue'
 import {storeToRefs} from 'pinia';
 import { ref } from "vue";
 import {usePlanStore} from '@/stores/plan.js';
-
+import Draggable from "vue3-draggable";
 
 const planstore= usePlanStore();
 const {plans} = storeToRefs(planstore);
+
+console.log(plans);
 </script>
 
 <template>
         <h2>여행 일정</h2>
-        <ul>
-         <PlanItem v-for="(plan) in plans" :key="plan" :plan="plan"/>
+        <ul>  
+          <PlanItem v-for="(plan) in plans" :key="plan" :plan="plan"/>
         </ul>
         <br>
-        <div class="button_box">
+
+        <div v-if="plans.length===0">여행지를 선택해주세요!</div>
+        <div class="button_box" v-else>
+          <div></div>
             <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             저장
           </button>
