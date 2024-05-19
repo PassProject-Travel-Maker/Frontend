@@ -47,7 +47,7 @@ const close = () => {
      style="margin : 0 auto">
       <KakaoMapMarker
       v-for="(area, index) in areas"
-      :key="area.id === undefined ? index : area.id"
+      :key="area.attractionId === undefined ? index : area.attractionId"
       :lat="area.latitude"
       :lng="area.longitude"
       :clickable="true"
@@ -66,7 +66,7 @@ const close = () => {
     </div>
     <ul role="list" class="divide-y divide-gray-100">
       <AreaListItem v-for="(area) in areas"
-    :key="area.id"
+    :key="area.attractionId"
     :area=area
     @click="setPlan(area)"
     />

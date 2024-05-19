@@ -32,7 +32,7 @@ const setPlan = (area) =>{
   const plans = dayForPlanDtoList.value[pickedindex.value].scheduleForPlanDtoList;
 
   //이미 등록된 관광지인지 확인
-  const index = plans.findIndex(plan => plan.id === area.id);
+  const index = plans.findIndex(plan => plan.attractionId === area.attractionId);
   console.log(index);
   //등록되지 않은 관광지
   if(index === -1){
