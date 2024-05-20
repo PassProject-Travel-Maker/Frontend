@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 import authApi from "@/apis/authApi";
 import { getMyInfoApi, getMyTravelListApi } from "@/apis/memberApi";
@@ -11,8 +11,19 @@ export const useMemberStore = defineStore("member", () => {
 
   const picked = ref(1);
   const pickedindex = ref(0);
-
   const dayForPlanDtoList = ref([]);
+
+  const location = ref({
+    latitude: 33.450705,
+    longitude: 126.570667,
+    level: 10,
+  });
+
+  watch(picked, () => {
+    console.log("날짜 선택 감시");
+    pickedindex.value = dayForPlanDtoList.value.findIndex((day) => day.num === picked.value);
+    console.log(pickedindex.value);
+  });
 
   const getMyInfo = async (memberId) => {
     const response = await getMyInfoApi(memberId);
@@ -33,6 +44,16 @@ export const useMemberStore = defineStore("member", () => {
     console.log(dayForPlanDtoList.value);
   };
 
+  const getLatLng = (area) => {
+    location.value = {
+      latitude: area.latitude,
+      longitude: area.longitude,
+      level: 8,
+    };
+
+    console.log(location.value);
+  };
+
   return {
     getMyInfo,
     getMyTravelList,
@@ -43,5 +64,7 @@ export const useMemberStore = defineStore("member", () => {
     picked,
     pickedindex,
     myPlan,
+    getLatLng,
+    location,
   };
 });

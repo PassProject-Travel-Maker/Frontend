@@ -2,7 +2,7 @@
 import MyInfo from "@/components/member/component/MyInfo.vue";
 import MyTravelItem from "@/components/member/component/MyTravelItem.vue";
 import MyPlanModal from "@/components/member/component/MyPlanModal.vue";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useMemberStore } from "@/stores/member";
 import { useAuthStore } from "@/stores/auth";
 import { storeToRefs } from "pinia";
@@ -36,6 +36,15 @@ const getPlanDetails = async (planId) => {
 const close = () => {
   isShow.value = false;
 };
+
+watch(isShow, () => {
+  console.log("모달인식");
+  if (isShow.value) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
+});
 </script>
 
 <template>

@@ -3,13 +3,15 @@ import PlanItem from "@/components/plan/component/PlanItem.vue";
 import { useMemberStore } from "@/stores/member";
 import { storeToRefs } from "pinia";
 const memberstore = useMemberStore();
+
+const { getLatLng } = memberstore;
 const { dayForPlanDtoList, picked, pickedindex, myPlan } = storeToRefs(memberstore);
+
+console.log(dayForPlanDtoList);
 console.log(pickedindex);
 </script>
 
 <template>
-  <div>{{ myPlan.title }}</div>
-  <div>{{ myPlan.description }}</div>
   <div class="day_container">
     <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num">
       <span :class="{ selected: picked === day.num }" @click="picked = day.num">
@@ -25,8 +27,11 @@ console.log(pickedindex);
     }">
     <PlanItem
       v-for="plan in dayForPlanDtoList[pickedindex].scheduleDetailResponseDtoList"
-      :key="plan"
-      :plan="plan" />
+      :key="plan.attractionInfoDto.id"
+      :plan="plan.attractionInfoDto"
+      style="cursor: pointer"
+      @click="getLatLng(plan.attractionInfoDto)"
+      class="hover:bg-sky-700" />
   </ul>
 </template>
 

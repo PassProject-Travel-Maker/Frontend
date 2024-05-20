@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from "vue";
 import PlanView from "@/components/member/component/PlanView.vue";
-import KakaoMap from "@/components/member/component/KakaoMap.vue";
+import PlanKakaoMap from "@/components/member/component/PlanKakaoMap.vue";
 const emit = defineEmits(["close"]);
 
 function close() {
@@ -17,7 +17,9 @@ function close() {
         <div class="left">
           <PlanView />
         </div>
-        <div class="right"></div>
+        <div class="right">
+          <PlanKakaoMap />
+        </div>
       </div>
     </div>
   </div>
@@ -60,6 +62,8 @@ function close() {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
 }
 
 .modal-bg {
@@ -74,13 +78,20 @@ function close() {
 
 .right {
   width: 70%;
+  height: 98%;
+  border: 1px solid #e4e4e7;
+  border-radius: 5px;
+  margin: auto 0;
+  margin-left: 5px;
 }
 .left {
   width: 30%;
-  height: 90%;
+  height: 98%;
   border: 1px solid #e4e4e7;
   border-radius: 5px;
   padding: 20px;
+  margin: auto 0;
+  margin-left: 5px;
   overflow: auto;
 }
 </style>
