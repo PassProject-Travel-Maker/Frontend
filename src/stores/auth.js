@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import authApi from "@/apis/authApi";
 import { jwtDecode } from "jwt-decode";
-import {setLocalStorage} from '@/utils/localstorage'
+import { setLocalStorage, removeLocalStorage } from "@/utils/localstorage";
 
 export const useAuthStore = defineStore("auth", () => {
   const token = ref(null);
@@ -30,6 +30,7 @@ export const useAuthStore = defineStore("auth", () => {
     //토큰 정보 및 유저 정보 삭제
     token.value = null;
     user.value = null;
+    removeLocalStorage();
   };
 
   return { user, token, join, login, logout };

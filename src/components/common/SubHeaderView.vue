@@ -1,14 +1,14 @@
 <script setup>
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "vue-router";
-
+import { getLocalStorageToken } from "@/utils/localstorage";
 const authStore = useAuthStore();
 const router = useRouter();
 
 const logout = () => {
   if (!confirm("로그아웃 하시겠습니까?")) return;
   authStore.logout();
-  router.push("/"); //홈으로
+  router.push({ name: "main" });
 };
 </script>
 
@@ -25,7 +25,7 @@ const logout = () => {
     </div>
 
     <!-- MyPage & Sign out -->
-    <div id="header_right" v-if="authStore.user === null">
+    <div id="header_right" v-if="getLocalStorageToken() === null">
       <RouterLink to="/signin">Sign in</RouterLink>
       <RouterLink to="/signup"><button>Create free account</button></RouterLink>
     </div>
@@ -43,7 +43,6 @@ const logout = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 #header_right {
   margin-left: auto;

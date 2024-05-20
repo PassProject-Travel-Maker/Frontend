@@ -3,14 +3,15 @@ import { useAuthStore } from "@/stores/auth";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
 import { useRouter } from "vue-router";
-
+import { getLocalStorageToken } from "@/utils/localstorage";
 const authStore = useAuthStore();
 const router = useRouter();
 
 const logout = () => {
   if (!confirm("로그아웃 하시겠습니까?")) return;
   authStore.logout();
-  router.push("/"); //홈으로
+  router.push({ name: "main" }); //홈으로
+  window.location.reload();
 };
 </script>
 
@@ -27,7 +28,7 @@ const logout = () => {
     </div>
 
     <!-- Sign in & Sign up -->
-    <div id="header_right" v-if="authStore.user === null">
+    <div id="header_right" v-if="getLocalStorageToken() === null">
       <RouterLink to="/signin">Sign in</RouterLink>
       <RouterLink to="/signup"><button>Create free account</button></RouterLink>
     </div>

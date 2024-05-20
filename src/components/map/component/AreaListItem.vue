@@ -1,33 +1,37 @@
 <script setup>
 defineProps({
-  area : Object
-})
+  area: Object,
+});
 
-const replaceImg = (e) =>{
-e.target.src="https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage-760x460.png";
-}
-
-
+const replaceImg = (e) => {
+  e.target.src = "https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage-760x460.png";
+};
 </script>
 
 <template>
-    <li class="flex justify-between gap-x-6 py-5">
+  <li class="flex justify-between gap-x-6 py-5">
     <div class="flex min-w-0 gap-x-4">
-      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" :src="area.img" alt="" @error="replaceImg">
+      <img
+        class="h-12 w-12 flex-none rounded-full bg-gray-50"
+        :src="area.img"
+        alt=""
+        @error="replaceImg" />
       <div class="min-w-0 flex-auto">
-        <p class="text-sm font-semibold leading-6 text-gray-900">{{area.title}}</p>
-        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{area.addr}}</p>
+        <p class="text-sm font-semibold leading-6 text-gray-900">{{ area.title }}</p>
+        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ area.addr }}</p>
       </div>
     </div>
     <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-      <p class="text-sm leading-6 text-gray-900">조회수 : {{area.hit}}</p>
-      <p class="mt-1 text-xs leading-5 text-gray-500">조용히 올라가는 추천수 : {{area.recommend}}</p>
+      <p class="text-sm leading-6 text-gray-900">조회수 : {{ area.hit }}</p>
+      <p class="mt-1 text-xs leading-5 text-gray-500">
+        조용히 올라가는 추천수 : {{ area.recommend }}
+      </p>
     </div>
   </li>
 </template>
 
 <style scoped>
-li{
+li {
   cursor: pointer;
 }
 </style>
