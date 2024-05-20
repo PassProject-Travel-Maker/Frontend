@@ -34,6 +34,8 @@ export const usePlanStore = defineStore("plan", () => {
     //등록되지 않은 관광지
     if (index === -1) {
       plans.push(area);
+    } else {
+      alert("이미 등록된 여행지 입니다!");
     }
   };
 

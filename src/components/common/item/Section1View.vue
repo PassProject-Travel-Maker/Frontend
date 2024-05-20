@@ -2,7 +2,7 @@
 
 <template>
   <div class="content">
-    <div id="title">
+    <div id="title" class="w-1/3">
       여행의 모든 순간을 <br />
       소중히.
       <br />
@@ -15,8 +15,8 @@
         </button>
       </RouterLink>
     </div>
-    <img id="card1" src="@/assets/img/Card 1.svg" />
-    <img id="card2" src="@/assets/img/Card 2.svg" />
+    <img class="w-1/3" id="card1" src="@/assets/img/Card 1.svg" />
+    <img class="w-1/3" id="card2" src="@/assets/img/Card 2.svg" />
   </div>
 </template>
 

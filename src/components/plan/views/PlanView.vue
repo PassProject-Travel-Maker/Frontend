@@ -24,6 +24,7 @@ const saveSchedule = async () => {
   console.log(schedule);
   const response = await createPlanApi(schedule);
   console.log(response);
+  alert(response.data);
 };
 </script>
 <template>
@@ -37,14 +38,20 @@ const saveSchedule = async () => {
     </div>
     <div class="day_box" @click="addDay">날짜 추가</div>
   </div>
-  <ul v-if="mode" class="plan_container">
+  <ul
+    v-if="mode"
+    class="plan_container"
+    :class="{ haveplan: dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length !== 0 }">
     <draggable v-model="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList">
       <template v-slot:item="{ item }">
         <PlanItem :plan="item" />
       </template>
     </draggable>
   </ul>
-  <ul v-else>
+  <ul
+    class="plan_container"
+    :class="{ haveplan: dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length !== 0 }"
+    v-else>
     <PlanItem
       v-for="plan in dayForPlanDtoList[pickedindex].scheduleForPlanDtoList"
       :key="plan"
@@ -114,7 +121,6 @@ const saveSchedule = async () => {
 }
 
 .plan_container {
-  border: 1px solid #e4e4e7;
   margin-top: 30px;
 }
 </style>
