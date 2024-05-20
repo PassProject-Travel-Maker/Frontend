@@ -28,7 +28,7 @@ onMounted(() => {
 });
 
 const getPlanDetails = async (planId) => {
-  await getPlanApi(planId);
+  await getPlanDetail(planId);
   console.log("Planid 선택 : " + planId);
   isShow.value = true;
 };
