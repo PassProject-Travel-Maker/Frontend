@@ -1,4 +1,4 @@
-import { Authapi, api } from "@/apis/core.js";
+import { Authapi } from "@/apis/core.js";
 
 export const getMyInfoApi = async (memberId) => {
   const response = await Authapi.get(`member/myInfo/${memberId}`);

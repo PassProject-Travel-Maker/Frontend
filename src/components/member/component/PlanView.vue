@@ -5,7 +5,7 @@ import { storeToRefs } from "pinia";
 const memberstore = useMemberStore();
 
 const { getLatLng } = memberstore;
-const { dayForPlanDtoList, picked, pickedindex, myPlan } = storeToRefs(memberstore);
+const { dayForPlanDtoList, picked, pickedindex,colors } = storeToRefs(memberstore);
 
 console.log(dayForPlanDtoList);
 console.log(pickedindex);
@@ -13,8 +13,9 @@ console.log(pickedindex);
 
 <template>
   <div class="day_container">
-    <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num">
-      <span :class="{ selected: picked === day.num }" @click="picked = day.num">
+    <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num" :style="{ color: colors[day.num-1], border: `1px solid ${colors[day.num-1]}`}">
+      <span :class="{ selected: picked === day.num }" @click="picked = day.num"
+      >
         {{ day.num }} 일차
       </span>
     </div>
@@ -37,7 +38,7 @@ console.log(pickedindex);
 
 <style scoped>
 .selected {
-  color: #18181b;
+  font-weight: bold;
 }
 .day_box {
   width: 20%;
