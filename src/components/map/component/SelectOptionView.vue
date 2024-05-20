@@ -36,10 +36,10 @@ const search = () => {
 </script>
 
 <template>
-    <form class="d-flex my-5 mx-5" onsubmit="return false;" role="search">
+    <form class="grid grid-cols-10 gap-2 my-5 mx-5" onsubmit="return false;" role="search">
       <select
         id="search-area"
-        class="form-select me-2"
+        class="form-select me-2 col-span-3 border rounded-md"
         name="sidoCode"
         v-model="searchData.sidoCode"
       >
@@ -50,7 +50,7 @@ const search = () => {
       </select>
       <select
         id="search-gugun"
-        class="form-select me-2"
+        class="form-select me-2 col-span-3 border rounded-md"
         name="gugunCode"
         v-model="searchData.gugunCode"
       >
@@ -60,7 +60,7 @@ const search = () => {
         </option>
       </select>
 
-      <select id="search-content-id" class="form-select me-2" v-model="searchData.attarctionId">
+      <select id="search-content-id" class="form-select me-2 col-span-3 border rounded-md" v-model="searchData.attarctionId">
         <option value="0" selected>관광지 유형</option>
         <option value="12">관광지</option>
         <option value="14">문화시설</option>
@@ -71,17 +71,9 @@ const search = () => {
         <option value="38">쇼핑</option>
         <option value="39">음식점</option>
       </select>
-      <input
-        id="search-keyword"
-        class="form-control me-2"
-        type="search"
-        placeholder="검색어"
-        aria-label="검색어"
-        v-model="searchData.keyword"
-      />
-      <button id="btn-search" class="btn btn-outline-success" type="button" @click="search">
-        검색
-      </button>
+      <button id="" class="btn btn-outline-success col-span-1 bg-slate-300 text-black rounded-md hover:bg-amber-300 py-2" type="button" @click="search">
+      검색
+    </button>
     </form>
 </template>
 
