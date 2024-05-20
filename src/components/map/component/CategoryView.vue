@@ -4,6 +4,8 @@ import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 import KakaoMapView from "@/components/map/component/KakaoMapView.vue";
 import KakaoMapSearhView from "@/components/map/component/KakaoMapSearhView.vue";
 import ChatGptView from "@/components/map/component/ChatGptView.vue";
+import PlanForm from "@/components/map/component/PlanFormView.vue";
+
 const categories = ref({
   "카테고리 별 검색": [
     {
@@ -27,8 +29,10 @@ const categories = ref({
 </script>
 
 <template>
+  <PlanForm />
   <div class="w-full  px-2 mt-10 sm:px-0" style="width : 100%">
     <TabGroup>
+
       <TabList class="inline-flex rounded-xl">
         <Tab
           v-for="category in Object.keys(categories)"

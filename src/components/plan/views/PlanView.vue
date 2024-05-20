@@ -27,6 +27,7 @@ const saveSchedule = async () => {
   alert(response.data);
 };
 </script>
+
 <template>
   <div class="day_container">
     <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num">
@@ -44,7 +45,7 @@ const saveSchedule = async () => {
     :class="{ haveplan: dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length !== 0 }">
     <draggable v-model="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList">
       <template v-slot:item="{ item }">
-        <PlanItem :plan="item" />
+        <PlanItem :plan="item" :mode="mode" />
       </template>
     </draggable>
   </ul>

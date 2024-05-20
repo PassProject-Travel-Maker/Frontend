@@ -7,7 +7,7 @@ import PlanView from "@/components/plan/views/PlanView.vue";
 <template>
   <div class="container">
   <div class="left">
-    <PlanForm />
+    <!-- <PlanForm /> -->
     <CategoryView/>
   </div>
   <div class="right">
