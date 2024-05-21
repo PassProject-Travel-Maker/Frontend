@@ -14,6 +14,8 @@ function close() {
     <div class="modal-bg" @click="close()"></div>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+        <!-- <button class="close-btn" @click="close()">×</button> -->
+        <i class="bi bi-x-square close-btn" @click="close()"></i>
         <div class="left">
           <PlanView />
         </div>
@@ -43,7 +45,7 @@ function close() {
 .modal-dialog {
   position: relative;
   margin: auto;
-  max-width: 600px;
+  max-width: 800px;
   width: 90%;
   z-index: 1000;
 }
@@ -51,19 +53,20 @@ function close() {
 .modal-content {
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
-  width: 95%;
-  height: 95%;
+  width: 80%;
+  height: 80%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: row;
+  padding: 20px;
 }
 
 .modal-bg {
@@ -78,20 +81,34 @@ function close() {
 
 .right {
   width: 70%;
-  height: 98%;
+  height: 100%;
   border: 1px solid #e4e4e7;
-  border-radius: 5px;
-  margin: auto 0;
-  margin-left: 5px;
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 10px;
+  overflow: auto;
+  margin-top: 50px;
 }
 .left {
   width: 30%;
-  height: 98%;
+  height: 100%;
   border: 1px solid #e4e4e7;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 20px;
-  margin: auto 0;
-  margin-left: 5px;
+  margin-right: 10px;
   overflow: auto;
+  margin-top: 50px;
 }
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
 </style>
