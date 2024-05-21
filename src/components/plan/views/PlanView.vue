@@ -10,6 +10,10 @@ const planstore = usePlanStore();
 const { addDay } = planstore;
 const { dayForPlanDtoList, picked, pickedindex, title, description } = storeToRefs(planstore);
 
+import { Switch } from "@headlessui/vue";
+
+const enabled = ref(false);
+
 const changeMode = () => {
   mode.value = !mode.value;
 };
@@ -62,12 +66,33 @@ const saveSchedule = async () => {
     <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num">
       <span :class="{ selected: picked === day.num }" @click="picked = day.num">
         {{ day.num }} 일차
+        <i class="bi bi-x" @click="removeDay(day.num)"></i>
       </span>
-      <!-- <input type="radio" name="sex" :value="day.num" v-model="picked" checked/>
-        <span> {{day.num}} 일차</span> -->
     </div>
     <div class="day_box" @click="addDay">날짜 추가</div>
   </div>
+
+  <hr class="divider" />
+
+  <!-- toggle -->
+  <div>
+    순서 바꾸기
+    <Switch
+      v-model="enabled"
+      :class="enabled ? 'bg-teal-900' : 'bg-teal-700'"
+      class="relative inline-flex h-[16px] w-[32px] sm:h-[20px] sm:w-[40px] md:h-[24px] md:w-[48px] lg:h-[28px] lg:w-[56px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+      <span class="sr-only">Use setting</span>
+      <span
+        aria-hidden="true"
+        :class="
+          enabled
+            ? 'translate-x-4 sm:translate-x-5 md:translate-x-6 lg:translate-x-7'
+            : 'translate-x-0'
+        "
+        class="pointer-events-none inline-block h-[12px] w-[12px] sm:h-[16px] sm:w-[16px] md:h-[20px] md:w-[20px] lg:h-[24px] lg:w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out" />
+    </Switch>
+  </div>
+
   <ul
     v-if="mode"
     class="plan_container"
@@ -91,8 +116,7 @@ const saveSchedule = async () => {
   <br />
 
   <div v-if="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length === 0">
-    여행지를 선택해주세요!
-    <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image" />
+    <!-- <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image"/> -->
   </div>
   <div class="button_box" v-else>
     <button
@@ -143,6 +167,7 @@ const saveSchedule = async () => {
   font-weight: bold;
   color: #bdbdbd;
   cursor: pointer;
+  padding: 5px;
 }
 
 .day_container {
@@ -155,11 +180,40 @@ const saveSchedule = async () => {
   margin-top: 30px;
 }
 
+.sticker-image {
+  position: absolute;
+  bottom: 100px;
+  width: 250px;
+  height: 250px;
+}
+
 .corner-image {
   position: absolute;
   bottom: 10px;
   right: 10px;
   width: 250px;
   height: 250px;
+}
+
+.day_box span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.day_box i {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.divider {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #e4e4e7;
 }
 </style>

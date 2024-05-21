@@ -24,9 +24,10 @@ import GptTextView from "@/components/map/component/GptTextView.vue";
 <style scoped>
 .gpt_container {
   width: 100%;
-  height: 900px;
+  /* height: 900px; */
+  height: 660px;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid #e4e4e7;
   display: flex;
   flex-direction: column;
 }
@@ -44,16 +45,19 @@ import GptTextView from "@/components/map/component/GptTextView.vue";
 .box {
   width: calc((100% - 60px) / 2);
   height: 100%;
-  border: 1px solid #e4e4e7;
+  /* border: 1px solid #e4e4e7; */
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 .text {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   height: 100px;
   flex-shrink: 0; /* 높이가 축소되지 않도록 설정 */
+  padding-left: 20px;
+  padding-top: 12px;
 }
 </style>

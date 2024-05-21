@@ -22,9 +22,9 @@ onMounted(() => {
 
 <style scoped>
 .text_box {
-  width: 90%;
-  height: 90%;
-  padding: 50px;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
   border: 1px solid #e4e4e7;
   border-radius: 5px;
   overflow: auto;
