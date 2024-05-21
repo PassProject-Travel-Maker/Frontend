@@ -67,7 +67,8 @@ const close = () => {
 <style scoped>
 .map_box {
   width: 100%;
-  height: 800px;
+  /* height: 800px; */
+  height: 660px;
   border-radius: 5px;
   border: 1px solid #e4e4e7;
 }
