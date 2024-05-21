@@ -10,7 +10,7 @@ const etc = ref("");
 
 const gptstore = useGPTStore();
 
-const { postDataToGPT} = gptstore;
+const { postDataToGPT, gptText, gptResponse } = gptstore;
 
 
 const GptSubmit = async() => {

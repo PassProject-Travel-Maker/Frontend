@@ -80,7 +80,7 @@ function close() {
 }
 
 .right {
-  width: 70%;
+  width: 60%;
   height: 100%;
   border: 1px solid #e4e4e7;
   border-radius: 10px;
@@ -90,7 +90,7 @@ function close() {
   margin-top: 50px;
 }
 .left {
-  width: 30%;
+  width: 40%;
   height: 100%;
   border: 1px solid #e4e4e7;
   border-radius: 10px;

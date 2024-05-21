@@ -1,15 +1,24 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useGPTStore } from "@/stores/gpt";
+import { ref } from "vue";
 
 const gptStore = useGPTStore();
-const { gptText } = storeToRefs(gptStore);
+const { gptResponse } = storeToRefs(gptStore);
 
+const mode=ref(false);
+console.log(gptResponse);
+
+const change = () =>{
+  mode.value= !mode.value;
+}
 </script>
 
 <template>
   <div>
-    <div class="text_box" v-html="gptText"></div>
+    <div class="text_box" v-html="gptResponse" v-if="mode"></div>
+    <div  @click="change" v-else>button</div>
+    <!-- <div class="text_box">{{ gptResponse }}</div> -->
   </div>
 </template>
 

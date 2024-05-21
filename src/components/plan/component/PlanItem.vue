@@ -33,6 +33,7 @@ const replaceImg = (e) => {
       </p>
     </div>
   </li>
+  <hr/>
 </template>
 
 <style scoped>
