@@ -14,7 +14,8 @@ function close() {
     <div class="modal-bg" @click="close()"></div>
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <button class="close-btn" @click="close()">×</button>
+        <!-- <button class="close-btn" @click="close()">×</button> -->
+        <i class="bi bi-x-square close-btn" @click="close()"></i>
         <div class="left">
           <PlanView />
         </div>
@@ -58,8 +59,8 @@ function close() {
   position: fixed;
   top: 0;
   left: 0;
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 80%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

@@ -18,17 +18,12 @@ onMounted(() => {
 
 <template>
   <div class="title_box">
-    <div class="font-extrabold text-5xl">{{ myPlan.title }}</div>
+    <div class="font-extrabold text-5xl">
+      {{ myPlan.title }}
+    </div>
     <div style="color: #667085">{{ myPlan.description }}</div>
   </div>
   <div class="map-container">
-    <!-- <div class="text-5xl day_box">{{ picked }} 일차 일정</div> -->
-    <!-- <KakaoMap
-      :lat="location.latitude"
-      :lng="location.longitude"
-      width="100%"
-      height="100%"
-      :level="location.level"> -->
       <KakaoMap
       :lat="location.latitude"
       :lng="location.longitude"
@@ -63,8 +58,11 @@ onMounted(() => {
 }
 .map-container {
   display: flex;
-  padding: 20px;
+  margin: 20px;
+  /* padding: 20px; */
   flex-direction: column;
   gap: 20px;
+  border-radius: 10px; /* border-radius 추가 */
+  overflow: hidden; /* 자식 요소가 부모 요소의 경계를 넘지 않도록 */
 }
 </style>

@@ -19,7 +19,11 @@ console.log(pickedindex);
       </span>
     </div>
   </div>
-
+  <hr class="divider" />
+  <div class="icons-container">
+    <i class="bi bi-pencil-square icon"></i>
+    <i class="bi bi-trash3 icon"></i>
+  </div>
   <ul
     class="plan_container"
     :class="{
@@ -48,8 +52,9 @@ console.log(pickedindex);
   align-items: center;
   color: #475569;
   cursor: pointer;
-  padding: 10px;
-  margin: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* margin: 5px; */
 }
 .day_box:hover {
   background-color: #4caf50;
@@ -62,6 +67,24 @@ console.log(pickedindex);
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
+}
+
+.divider {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #e4e4e7;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.icon {
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .plan_container {
