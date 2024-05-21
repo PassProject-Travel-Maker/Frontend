@@ -63,6 +63,7 @@ const saveSchedule = async () => {
 
   <div v-if="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length === 0">
     여행지를 선택해주세요!
+    <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image"/>
   </div>
   <div class="button_box" v-else>
     <button
@@ -123,5 +124,13 @@ const saveSchedule = async () => {
 
 .plan_container {
   margin-top: 30px;
+}
+
+.corner-image {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 250px;
+  height: 250px;
 }
 </style>
