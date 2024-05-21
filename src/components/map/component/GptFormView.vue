@@ -1,13 +1,20 @@
 <script setup>
 import { ref } from "vue";
-
+import {useGPTStore} from "@/stores/gpt.js";
+import { storeToRefs} from "pinia";
 const location = ref("");
 const period = ref("");
 const peopleNum = ref("");
 const cost = ref("");
 const etc = ref("");
 
-const GptSubmit = () => {
+const gptstore = useGPTStore();
+
+const { postDataToGPT} = gptstore;
+
+
+const GptSubmit = async() => {
+  
   const data = {
     location: location.value,
     period: period.value,
@@ -15,6 +22,14 @@ const GptSubmit = () => {
     cost: cost.value,
     etc: etc.value,
   };
+    try{
+        await postDataToGPT(data);
+      }
+      catch(e)
+      {
+        console.log(e);
+
+      }
 
   //
 };
@@ -55,7 +70,7 @@ const GptSubmit = () => {
           id="etc"
           name="etc"
           placeholder=" ex) 휠체어를 타는 노인이 1명 있어"
-          v-model="cost" />
+          v-model="etc" />
       </div>
 
       <div class="button_box">

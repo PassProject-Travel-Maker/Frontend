@@ -1,22 +1,15 @@
 <script setup>
-import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useGPTStore } from "@/stores/gpt";
 
 const gptStore = useGPTStore();
-const test = ref("");
 const { gptText } = storeToRefs(gptStore);
-const { formattedData } = gptStore;
 
-onMounted(() => {
-  console.log(gptText.value);
-  test.value = formattedData(gptText.value);
-});
 </script>
 
 <template>
   <div>
-    <div class="text_box" v-html="test"></div>
+    <div class="text_box" v-html="gptText"></div>
   </div>
 </template>
 
