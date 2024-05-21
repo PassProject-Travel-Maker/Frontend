@@ -17,7 +17,7 @@ const {title, description} = storeToRefs(planStore);
     </div>
     <div id="title_box">
       <label for="title" >여행 제목</label>
-      <input type="text" id="title" name="title" 
+      <input type="text" id="title" name="title"
       placeholder="여행제목을 입력해주세요"
       v-model="title" />
     </div>

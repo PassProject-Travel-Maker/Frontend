@@ -7,10 +7,9 @@ defineProps({
 <template>
   <div class="flex min-w-0 gap-x-4 divide-y divide-gray-100 relative">
     <div class="mx-8 my-8 flex gap-x-8">
-      <img
-        class="h-24 w-24 flex-none rounded-full bg-gray-50"
-        src="https://png.pngtree.com/png-vector/20191001/ourmid/pngtree-man-icon-isolated-on-abstract-background-png-image_1769021.jpg"
-        alt="" />
+        <!-- <i class="bi bi-person-gear icon-custom"></i> -->
+        <i class="bi bi-person icon-custom"></i>
+
 
       <div class="min-w-0">
         <p class="text-lg font-semibold leading-6 text-gray-900">이름 : {{ myinfo.name }}</p>
@@ -38,4 +37,17 @@ defineProps({
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.icon-custom {
+  font-size: 90px; /* 아이콘의 크기를 조정합니다 */
+  height: 96px; /* 이미지의 높이 */
+  width: 96px; /* 이미지의 너비 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* 둥근 모서리 */
+  background-color: #f9fafb; /* 배경 색상 */
+  color: #000; /* 아이콘 색상 (필요에 따라 조정 가능) */
+}
+
+</style>

@@ -4,7 +4,9 @@ defineProps({
 });
 
 const replaceImg = (e) => {
+  const idx = 1;
   e.target.src = "https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage-760x460.png";
+  // e.target.src = "@/assets/img/kakao/kakao1.png";
 };
 </script>
 
