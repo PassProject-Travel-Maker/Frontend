@@ -5,14 +5,14 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex min-w-0 gap-x-4 divide-y divide-gray-100 border relative">
+  <div class="flex min-w-0 gap-x-4 divide-y divide-gray-100 relative">
     <div class="mx-8 my-8 flex gap-x-8">
       <img
         class="h-24 w-24 flex-none rounded-full bg-gray-50"
         src="https://png.pngtree.com/png-vector/20191001/ourmid/pngtree-man-icon-isolated-on-abstract-background-png-image_1769021.jpg"
         alt="" />
 
-      <div class="min-w-0 border">
+      <div class="min-w-0">
         <p class="text-lg font-semibold leading-6 text-gray-900">이름 : {{ myinfo.name }}</p>
         <p class="text-lg mt-1 truncate text-xs leading-5 text-gray-500">
           이메일 : {{ myinfo.email }}
