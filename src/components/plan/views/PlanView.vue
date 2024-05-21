@@ -150,6 +150,13 @@ const saveSchedule = async () => {
   margin-top: 30px;
 }
 
+.sticker-image {
+  position: absolute;
+  bottom: 100px;
+  width: 250px;
+  height: 250px;
+}
+
 .corner-image {
   position: absolute;
   bottom: 10px;
