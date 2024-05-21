@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+
 const location = ref("");
 const period = ref("");
 const peopleNum = ref("");
@@ -14,6 +15,8 @@ const GptSubmit = () => {
     cost: cost.value,
     etc: etc.value,
   };
+
+  //
 };
 </script>
 

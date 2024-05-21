@@ -15,10 +15,39 @@ const changeMode = () => {
 };
 
 const saveSchedule = async () => {
+  //스케줄을 추가하게 되면 카카오 정보는 따로 구분해줘야한다.
+
+  let temp = JSON.parse(JSON.stringify(dayForPlanDtoList.value));
+  temp.map((day) => {
+    day.scheduleForPlanDtoList.forEach((schedule, index) => {
+      if (schedule.attrType === "KAKAO") {
+        console.log("카카오~");
+        let data = {
+          attractionId: schedule.attractionId,
+          attrType: schedule.attrType,
+          kakaoDto: {
+            id: schedule.attractionId,
+            latitude: schedule.latitude,
+            longitude: schedule.longitude,
+            img: schedule.img,
+            hit: schedule.hit,
+            recommend: schedule.recommend,
+            addr: schedule.addr,
+            title: schedule.title,
+          },
+        };
+
+        day.scheduleForPlanDtoList[index] = data;
+      }
+    });
+  });
+
+  console.log(temp);
+
   const schedule = {
     title: title.value,
     description: description.value,
-    dayForPlanDtoList: dayForPlanDtoList.value,
+    dayForPlanDtoList: temp,
   };
 
   console.log(schedule);
@@ -63,7 +92,7 @@ const saveSchedule = async () => {
 
   <div v-if="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length === 0">
     여행지를 선택해주세요!
-    <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image"/>
+    <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image" />
   </div>
   <div class="button_box" v-else>
     <button
