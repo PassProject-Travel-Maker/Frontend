@@ -6,18 +6,12 @@ export const useMemberStore = defineStore("member", () => {
   const myInfo = ref({});
   const myTravelList = ref({});
   const myPlan = ref({});
-  const myPath =ref([]);
+  const myPath = ref([]);
   const picked = ref(1);
   const pickedindex = ref(0);
   const dayForPlanDtoList = ref([]);
   // const colors=ref(['#22d3ee']);
-  const colors = ref([
-    '#336699', 
-    '#86bbd8', 
-    '#2f4858', 
-    '#9ee493', 
-    '#daf7dc'
-  ]);
+  const colors = ref(["#336699", "#86bbd8", "#2f4858", "#9ee493", "#daf7dc"]);
   console.log("color: ", colors);
   const location = ref({
     latitude: 33.450705,
@@ -25,15 +19,17 @@ export const useMemberStore = defineStore("member", () => {
     level: 10,
   });
 
-
   const makePath = () => {
     const path = [];
-    dayForPlanDtoList.value[pickedindex.value].scheduleDetailResponseDtoList.forEach(schedule => {
-       path.push({ 'lat' : schedule.attractionInfoDto.latitude, 'lng' : schedule.attractionInfoDto.longitude});
+    dayForPlanDtoList.value[pickedindex.value].scheduleDetailResponseDtoList.forEach((schedule) => {
+      path.push({
+        lat: schedule.attractionInfoDto.latitude,
+        lng: schedule.attractionInfoDto.longitude,
+      });
     });
     console.log(path);
     myPath.value = path;
-  }
+  };
   watch(picked, () => {
     console.log("날짜 선택 감시");
     pickedindex.value = dayForPlanDtoList.value.findIndex((day) => day.num === picked.value);
@@ -55,25 +51,29 @@ export const useMemberStore = defineStore("member", () => {
 
   const getPlanDetail = async (planId) => {
     //새로 계획을 볼때마다 1일차로 이동
-    pickedindex.value=0;
+    pickedindex.value = 0;
     const response = await getPlanApi(planId);
     myPlan.value = response.data;
     dayForPlanDtoList.value = myPlan.value.dayDetailResponseDtoList;
     console.log(dayForPlanDtoList.value);
 
+    location.value = {
+      latitude:
+        dayForPlanDtoList.value[0].scheduleDetailResponseDtoList[0].attractionInfoDto.latitude,
+      longitude:
+        dayForPlanDtoList.value[0].scheduleDetailResponseDtoList[0].attractionInfoDto.longitude,
+      level: 10,
+    };
 
-    
-   
-  
     // for(let j=1;j<dayForPlanDtoList.value.length;j++)
     // {
     //   colors.value.push(getRandomColor());
     // }
   };
 
-  const getRandomColor =() => {
+  const getRandomColor = () => {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
-  }
+  };
 
   const getLatLng = (area) => {
     location.value = {
@@ -99,6 +99,6 @@ export const useMemberStore = defineStore("member", () => {
     location,
     myPath,
     makePath,
-    colors
+    colors,
   };
 });
