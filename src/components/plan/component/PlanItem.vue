@@ -1,4 +1,13 @@
 <script setup>
+
+import { storeToRefs } from "pinia";
+import { usePlanStore } from "@/stores/plan";
+
+
+
+const planstore = usePlanStore();
+const { deletedchecked } = storeToRefs(planstore);
+
 defineProps({
   plan: Object,
   mode : Boolean
@@ -16,6 +25,8 @@ const replaceImg = (e) => {
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16" v-if="mode">
         <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
       </svg>
+      <input type="checkbox" :id="plan.attractionId" :value="plan.attractionId" v-model="deletedchecked"/>
+      <label :for="plan.attractionId"></label>
       <img
         class="h-12 w-12 flex-none rounded-full bg-gray-50"
         :src="plan.img"
@@ -43,5 +54,17 @@ const replaceImg = (e) => {
 }
 li {
   margin-bottom: 5px;
+}
+input[type="checkbox"] {
+  display: none;
+}
+input[type=checkbox] + label { 
+    cursor: pointer; 
+    padding-left: 23px; 
+    background-repeat: no-repeat;
+    background-image: url('@/assets/img/checkbox/check-square.svg');
+}
+input[type=checkbox]:checked + label {
+    background-image: url('@/assets/img/checkbox/check-square-fill.svg');
 }
 </style>

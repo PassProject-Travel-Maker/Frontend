@@ -8,6 +8,7 @@ export const usePlanStore = defineStore("plan", () => {
   const pickedindex = ref(0);
   const enabled = ref(false);
 
+  const deletedchecked=ref([]);
   watch(picked, () => {
     console.log("날짜 선택 감시");
     pickedindex.value = dayForPlanDtoList.value.findIndex((day) => day.num === picked.value);
@@ -60,5 +61,20 @@ export const usePlanStore = defineStore("plan", () => {
     console.log(picked.value);
   };
 
-  return { plans, setPlan, title, description, dayForPlanDtoList, addDay, picked, pickedindex,enabled };
+  const deleteArea = () =>{
+     //어떤날의 스케줄인지 확인해야한다.
+     let findplans = dayForPlanDtoList.value[pickedindex.value].scheduleForPlanDtoList;
+
+     //해당 스케줄의 plan id가 일치하면 배열에서 삭제한다
+     deletedchecked.value.forEach( (checked)=>{
+      console.log(checked);
+      findplans=findplans.filter((plan)=> plan.attractionId !== checked)
+     });
+     console.log(findplans);
+     deletedchecked.value=[];
+     
+     dayForPlanDtoList.value[pickedindex.value].scheduleForPlanDtoList=findplans;
+    }
+
+  return { plans, setPlan, title, description, dayForPlanDtoList, addDay, picked, pickedindex,enabled,deleteArea,deletedchecked };
 });
