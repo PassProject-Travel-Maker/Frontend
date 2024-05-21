@@ -1,4 +1,4 @@
-import { computed, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 import { getMyInfoApi, getMyTravelListApi } from "@/apis/memberApi";
 import { getPlanApi } from "@/apis/planApi";

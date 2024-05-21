@@ -6,6 +6,7 @@ export const usePlanStore = defineStore("plan", () => {
   const daycount = ref(1);
   const picked = ref(1);
   const pickedindex = ref(0);
+  const enabled = ref(false);
 
   watch(picked, () => {
     console.log("날짜 선택 감시");
@@ -23,7 +24,14 @@ export const usePlanStore = defineStore("plan", () => {
   const plans = ref([]);
 
   const setPlan = (area) => {
-    console.log(area);
+
+    //
+    if(enabled.value)
+    {
+      alert("관광지를 추가하려면 버튼을 비활성화 해주세요!")
+    }
+    else{
+      console.log(area);
 
     //어떤날의 스케줄인지 확인해야한다.
     const plans = dayForPlanDtoList.value[pickedindex.value].scheduleForPlanDtoList;
@@ -36,6 +44,7 @@ export const usePlanStore = defineStore("plan", () => {
       plans.push(area);
     } else {
       alert("이미 등록된 여행지 입니다!");
+    }
     }
   };
 
@@ -51,5 +60,5 @@ export const usePlanStore = defineStore("plan", () => {
     console.log(picked.value);
   };
 
-  return { plans, setPlan, title, description, dayForPlanDtoList, addDay, picked, pickedindex };
+  return { plans, setPlan, title, description, dayForPlanDtoList, addDay, picked, pickedindex,enabled };
 });

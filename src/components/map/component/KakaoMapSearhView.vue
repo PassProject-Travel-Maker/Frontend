@@ -1,6 +1,6 @@
 <script setup>
 import { KakaoMap, KakaoMapMarker } from "vue3-kakao-maps";
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import AreaListItem from "@/components/map/component/AreaListItem.vue";
 import { usePlanStore } from "@/stores/plan.js";
 import { useCategoryMapStore } from "@/stores/map.js";
@@ -16,7 +16,7 @@ const { setPlan } = planstore;
 const { location } = storeToRefs(mapstore);
 const isShow = ref(false);
 const area = ref({});
-
+console.log(location.value)
 const onClickMapMarker = (eventarea, index) => {
   area.value = areas.value[index];
   isShow.value = true;
@@ -56,9 +56,9 @@ const SearchPlace = () => {
 
         let lat = 0;
         let lng = 0;
-        areas.value.forEach((area) => {
-          lat += area.latitude;
-          lng += area.longitude;
+        areas.value.forEach((item) => {
+          lat += Number(item.latitude);
+          lng += Number(item.longitude);
         });
         lat = lat / areas.value.length;
         lng = lng / areas.value.length;
@@ -85,8 +85,8 @@ const SearchPlace = () => {
       <button @click="SearchPlace">검색</button>
     </div>
     <KakaoMap
-      :lat="location.value.latitude"
-      :lng="location.value.longitude"
+      :lat="location.latitude"
+      :lng="location.longitude"
       :draggable="true"
       level="7"
       width="95%"

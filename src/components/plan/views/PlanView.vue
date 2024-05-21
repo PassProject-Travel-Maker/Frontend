@@ -5,18 +5,13 @@ import { usePlanStore } from "@/stores/plan";
 import Draggable from "vue3-draggable";
 import { ref } from "vue";
 import { createPlanApi } from "@/apis/planApi";
-const mode = ref(false);
-const planstore = usePlanStore();
-const { addDay } = planstore;
-const { dayForPlanDtoList, picked, pickedindex, title, description } = storeToRefs(planstore);
-
 import { Switch } from "@headlessui/vue";
 
-const enabled = ref(false);
 
-const changeMode = () => {
-  mode.value = !mode.value;
-};
+
+const planstore = usePlanStore();
+const { addDay } = planstore;
+const { dayForPlanDtoList, picked, pickedindex, title, description,enabled } = storeToRefs(planstore);
 
 const saveSchedule = async () => {
   //스케줄을 추가하게 되면 카카오 정보는 따로 구분해줘야한다.
@@ -25,7 +20,7 @@ const saveSchedule = async () => {
   temp.map((day) => {
     day.scheduleForPlanDtoList.forEach((schedule, index) => {
       if (schedule.attrType === "KAKAO") {
-        console.log("카카오~");
+
         let data = {
           attractionId: schedule.attractionId,
           attrType: schedule.attrType,
@@ -46,17 +41,12 @@ const saveSchedule = async () => {
     });
   });
 
-  console.log(temp);
-
   const schedule = {
     title: title.value,
     description: description.value,
     dayForPlanDtoList: dayForPlanDtoList.value,
   };
-
-  console.log(schedule);
   const response = await createPlanApi(schedule);
-  console.log(response);
   alert(response.data);
 };
 </script>
@@ -76,7 +66,8 @@ const saveSchedule = async () => {
 
   <!-- toggle -->
   <div>
-    순서 바꾸기
+    <span v-if="enabled">활성중</span>
+    <span v-else>비활성화</span>
     <Switch
       v-model="enabled"
       :class="enabled ? 'bg-teal-900' : 'bg-teal-700'"
@@ -92,12 +83,12 @@ const saveSchedule = async () => {
   </div>
 
   <ul
-    v-if="mode"
+    v-if="enabled"
     class="plan_container"
     :class="{ haveplan: dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length !== 0 }">
     <draggable v-model="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList">
       <template v-slot:item="{ item }">
-        <PlanItem :plan="item" :mode="mode" />
+        <PlanItem :plan="item" :mode="enabled" />
       </template>
     </draggable>
   </ul>
@@ -120,20 +111,6 @@ const saveSchedule = async () => {
   <div class="button_box" v-else>
     <button
       type="button"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-auto"
-      @click="changeMode"
-      v-if="mode">
-      돌아가기
-    </button>
-    <button
-      type="button"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-auto"
-      @click="changeMode"
-      v-else>
-      순서바꾸기
-    </button>
-    <button
-      type="button"
       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       @click="saveSchedule">
       저장
@@ -141,7 +118,7 @@ const saveSchedule = async () => {
     <button
       type="button"
       class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-      초기화
+      삭제
     </button>
   </div>
 </template>
