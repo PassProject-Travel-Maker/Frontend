@@ -64,11 +64,6 @@ export const useMemberStore = defineStore("member", () => {
         dayForPlanDtoList.value[0].scheduleDetailResponseDtoList[0].attractionInfoDto.longitude,
       level: 10,
     };
-
-    // for(let j=1;j<dayForPlanDtoList.value.length;j++)
-    // {
-    //   colors.value.push(getRandomColor());
-    // }
   };
 
   const getRandomColor = () => {

@@ -2,13 +2,28 @@
 import { KakaoMap, KakaoMapMarker } from "vue3-kakao-maps";
 import { ref, onMounted } from "vue";
 import AreaListItem from "@/components/map/component/AreaListItem.vue";
+import { usePlanStore } from "@/stores/plan.js";
+import { useCategoryMapStore } from "@/stores/map.js";
+import MapModal from "@/components/map/component/MapModal.vue";
+import { storeToRefs } from "pinia";
 const keywords = ref("");
 const areas = ref([]);
-import { usePlanStore } from "@/stores/plan.js";
 
 const planstore = usePlanStore();
-const { setPlan } = planstore;
+const mapstore = useCategoryMapStore();
 
+const { setPlan } = planstore;
+const { location } = storeToRefs(mapstore);
+const isShow = ref(false);
+const area = ref({});
+
+const onClickMapMarker = (eventarea, index) => {
+  area.value = areas.value[index];
+  isShow.value = true;
+};
+const close = () => {
+  isShow.value = false;
+};
 const SearchPlace = () => {
   if (keywords.value === "") {
     alert("검색어를 입력해주세요");
@@ -38,6 +53,19 @@ const SearchPlace = () => {
         });
 
         areas.value = data;
+
+        let lat = 0;
+        let lng = 0;
+        areas.value.forEach((area) => {
+          lat += area.latitude;
+          lng += area.longitude;
+        });
+        lat = lat / areas.value.length;
+        lng = lng / areas.value.length;
+        console.log(lat + " " + lng);
+        location.value.latitude = lat;
+        location.value.longitude = lng;
+
         console.log(areas.value);
       }
     };
@@ -57,14 +85,23 @@ const SearchPlace = () => {
       <button @click="SearchPlace">검색</button>
     </div>
     <KakaoMap
-      :lat="33.450705"
-      :lng="126.570667"
+      :lat="location.value.latitude"
+      :lng="location.value.longitude"
       :draggable="true"
       level="7"
       width="95%"
       height="80%"
       style="margin: 0 auto">
+      <KakaoMapMarker
+        v-for="(area, index) in areas"
+        :key="area.attractionId === undefined ? index : area.attractionId"
+        :lat="area.latitude"
+        :lng="area.longitude"
+        :clickable="true"
+        @onClickKakaoMapMarker="onClickMapMarker(area, index)">
+      </KakaoMapMarker>
     </KakaoMap>
+    <MapModal :area="area" v-show="isShow" @close="close" :class="{ show: isShow }"></MapModal>
   </div>
 
   <ul role="list" class="divide-y divide-gray-100">
