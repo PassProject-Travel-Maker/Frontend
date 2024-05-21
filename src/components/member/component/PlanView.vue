@@ -5,7 +5,7 @@ import { storeToRefs } from "pinia";
 const memberstore = useMemberStore();
 
 const { getLatLng } = memberstore;
-const { dayForPlanDtoList, picked, pickedindex,colors } = storeToRefs(memberstore);
+const { dayForPlanDtoList, picked, pickedindex, colors } = storeToRefs(memberstore);
 
 console.log(dayForPlanDtoList);
 console.log(pickedindex);
@@ -13,8 +13,6 @@ console.log(pickedindex);
 
 <template>
   <div class="day_container">
-    <!-- <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num" :style="{ color: colors[day.num-1], border: `1px solid ${colors[day.num-1]}`}"> -->
-    <!-- <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num" :style="{ color: colors[day.num%colors.length], border: `1px solid ${colors[day.num%colors.length]}`}"> -->
     <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num">
       <span :class="{ selected: picked === day.num }" @click="picked = day.num">
         {{ day.num }} 일차
@@ -48,9 +46,10 @@ console.log(pickedindex);
   display: flex;
   justify-content: center;
   align-items: center;
-  /* font-weight: bold; */
   color: #475569;
   cursor: pointer;
+  padding: 10px;
+  margin: 5px;
 }
 .day_box:hover {
   background-color: #4caf50;
@@ -62,9 +61,11 @@ console.log(pickedindex);
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  padding: 20px;
 }
 
 .plan_container {
   margin-top: 30px;
+  padding: 20px;
 }
 </style>
