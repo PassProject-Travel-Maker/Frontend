@@ -51,7 +51,7 @@ const saveSchedule = async () => {
   const schedule = {
     title: title.value,
     description: description.value,
-    dayForPlanDtoList: temp,
+    dayForPlanDtoList: dayForPlanDtoList.value,
   };
 
   console.log(schedule);
@@ -80,16 +80,14 @@ const saveSchedule = async () => {
     <Switch
       v-model="enabled"
       :class="enabled ? 'bg-teal-900' : 'bg-teal-700'"
-      class="relative inline-flex h-[16px] w-[32px] sm:h-[20px] sm:w-[40px] md:h-[24px] md:w-[48px] lg:h-[28px] lg:w-[56px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+      class="relative inline-flex h-[16px] w-[32px] sm:h-[20px] sm:w-[40px] md:h-[24px] md:w-[48px] lg:h-[28px] lg:w-[56px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+    >
       <span class="sr-only">Use setting</span>
       <span
         aria-hidden="true"
-        :class="
-          enabled
-            ? 'translate-x-4 sm:translate-x-5 md:translate-x-6 lg:translate-x-7'
-            : 'translate-x-0'
-        "
-        class="pointer-events-none inline-block h-[12px] w-[12px] sm:h-[16px] sm:w-[16px] md:h-[20px] md:w-[20px] lg:h-[24px] lg:w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out" />
+        :class="enabled ? 'translate-x-4 sm:translate-x-5 md:translate-x-6 lg:translate-x-7' : 'translate-x-0'"
+        class="pointer-events-none inline-block h-[12px] w-[12px] sm:h-[16px] sm:w-[16px] md:h-[20px] md:w-[20px] lg:h-[24px] lg:w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
+      />
     </Switch>
   </div>
 
@@ -116,6 +114,7 @@ const saveSchedule = async () => {
   <br />
 
   <div v-if="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length === 0">
+    여행지를 선택해주세요!
     <!-- <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image"/> -->
   </div>
   <div class="button_box" v-else>
@@ -178,13 +177,6 @@ const saveSchedule = async () => {
 
 .plan_container {
   margin-top: 30px;
-}
-
-.sticker-image {
-  position: absolute;
-  bottom: 100px;
-  width: 250px;
-  height: 250px;
 }
 
 .corner-image {
