@@ -10,8 +10,15 @@ export const useMemberStore = defineStore("member", () => {
   const picked = ref(1);
   const pickedindex = ref(0);
   const dayForPlanDtoList = ref([]);
-  const colors=ref(['#22d3ee']);
-  console.log(colors);
+  // const colors=ref(['#22d3ee']);
+  const colors = ref([
+    '#336699', 
+    '#86bbd8', 
+    '#2f4858', 
+    '#9ee493', 
+    '#daf7dc'
+  ]);
+  console.log("color: ", colors);
   const location = ref({
     latitude: 33.450705,
     longitude: 126.570667,
@@ -58,10 +65,10 @@ export const useMemberStore = defineStore("member", () => {
     
    
   
-    for(let j=1;j<dayForPlanDtoList.value.length;j++)
-    {
-      colors.value.push(getRandomColor());
-    }
+    // for(let j=1;j<dayForPlanDtoList.value.length;j++)
+    // {
+    //   colors.value.push(getRandomColor());
+    // }
   };
 
   const getRandomColor =() => {
