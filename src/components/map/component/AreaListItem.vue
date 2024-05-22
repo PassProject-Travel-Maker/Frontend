@@ -1,12 +1,21 @@
 <script setup>
+import { ref } from 'vue';
+
 defineProps({
   area: Object,
 });
 
+// 모든 이미지를 동적으로 가져오기
+const images = import.meta.glob('@/assets/img/kakao/*.png');
+
+// 이미지 경로를 배열로 변환
+const imagePaths = Object.keys(images);
+
 const replaceImg = (e) => {
-  const idx = 1;
-  e.target.src = "https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage-760x460.png";
-  // e.target.src = "@/assets/img/kakao/kakao1.png";
+  const idx = Math.floor(Math.random() * imagePaths.length);
+  const selectedImage = imagePaths[idx];
+  e.target.src = selectedImage;
+  // area.img = selectedImage;
 };
 </script>
 
