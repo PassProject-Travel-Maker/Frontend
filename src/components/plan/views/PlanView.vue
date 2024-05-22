@@ -119,8 +119,8 @@ const saveSchedule = async () => {
   <!-- toggle -->
   <div class="toggle_container">
     <div style="padding-right: 10px;">
-      <span v-if="enabled">활성화</span>
-      <span v-else>비활성화 </span>
+      <span v-if="enabled">순서 바꾸기</span>
+      <span v-else>선택 삭제</span>
     </div>
     <Switch
       v-model="enabled"
@@ -163,8 +163,8 @@ const saveSchedule = async () => {
   <br />
 
   <div v-if="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length === 0">
-    여행지를 선택해주세요!
-    <!-- <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image"/> -->
+    <div class="corner-message">여행지를 선택해주세요!</div>
+    <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image"/>
   </div>
   <div class="button_box" v-else>
     <button
@@ -222,6 +222,12 @@ const saveSchedule = async () => {
   right: 10px;
   width: 250px;
   height: 250px;
+}
+
+.corner-message {
+  position: absolute;
+  bottom: 250px;
+  right: 170px;
 }
 
 .day_box span {
