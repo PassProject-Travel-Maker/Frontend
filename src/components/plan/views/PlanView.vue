@@ -120,9 +120,11 @@ const saveSchedule = async () => {
   <hr class="divider" />
 
   <!-- toggle -->
-  <div>
-    <span v-if="enabled">활성중</span>
-    <span v-else>비활성화 </span>
+  <div class="toggle_container">
+    <div style="padding-right: 10px;">
+      <span v-if="enabled">활성화</span>
+      <span v-else>비활성화 </span>
+    </div>
     <Switch
       v-model="enabled"
       :class="enabled ? 'bg-teal-900' : 'bg-teal-700'"
@@ -245,5 +247,11 @@ const saveSchedule = async () => {
   margin: 20px 0;
   border: 0;
   border-top: 1px solid #e4e4e7;
+}
+
+.toggle_container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 </style>

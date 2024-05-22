@@ -13,12 +13,14 @@ const {title, description} = storeToRefs(planStore);
       <label for="title" >여행 제목</label>
       <input type="text" id="title" name="title"
       placeholder="여행제목을 입력해주세요"
-      v-model="title" />
+      v-model="title" 
+      class="input_box"/>
     </div>
     <div id="subject_box">
       <label for="subject" class="text-sm font-medium leading-6 text-gray-900">내용 </label>
       <input type="text" id="subject" name="subject" v-model="description" 
-      placeholder="여행 설명을 입력해주세요" />
+      placeholder="여행 설명을 입력해주세요" 
+      class="input_box"/>
     </div>
   </div>
 </template>
@@ -50,5 +52,9 @@ label{
 }
 #subject_box{
   width: 49%;
+}
+
+.input_box {
+  padding-left: 10px;
 }
 </style>
