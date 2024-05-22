@@ -24,6 +24,13 @@ const onClickMapMarker = (eventarea, index) => {
 const close = () => {
   isShow.value = false;
 };
+
+// 모든 이미지를 동적으로 가져오기
+const images = import.meta.glob('@/assets/img/kakao/*.png');
+// 이미지 경로를 배열로 변환
+const imagePaths = Object.keys(images);
+
+
 const SearchPlace = () => {
   if (keywords.value === "") {
     alert("검색어를 입력해주세요");
@@ -39,12 +46,17 @@ const SearchPlace = () => {
         console.log(result);
 
         result.forEach((item) => {
+
+          const idx = Math.floor(Math.random() * imagePaths.length);
+          const selectedImage = imagePaths[idx];
+
+
           data.push({
             attractionId: Number(item.id) + 1000000,
             attrType: "KAKAO",
             latitude: item.y,
             longitude: item.x,
-            img: "",
+            img: selectedImage,
             hit: 0,
             recommend: 0,
             addr: item.address_name,
@@ -79,12 +91,12 @@ const SearchPlace = () => {
     <div class="grid grid-cols-10 gap-2 my-5 mx-5">
       <input
         @keyup.enter="SearchPlace"
-        class="form-select me-2 col-span-3 border rounded-md"
-        placeholder="매장 검색"
+        class="form-select me-2 col-span-8 border rounded-md input_box"
+        placeholder=" 검색어 입력"
         v-model="keywords" />
       <button
         @click="SearchPlace"
-        class="btn btn-outline-success col-span-1 bg-slate-300 text-black rounded-md hover:bg-amber-300 py-2">
+        class="btn btn-outline-success col-span-2 bg-slate-300 text-black rounded-md hover:bg-amber-300 py-2">
         검색
       </button>
     </div>
@@ -121,8 +133,9 @@ const SearchPlace = () => {
   border: 1px solid #e4e4e7;
 }
 .input_box {
-  width: 100%;
+  /* width: 100%;
   height: 100px;
-  border: 1px solid black;
+  border: 1px solid black; */
+  padding-left: 10px;
 }
 </style>
