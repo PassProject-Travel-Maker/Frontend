@@ -61,7 +61,7 @@ export const useGPTStore = defineStore("gpt", () => {
   };
 
   const handleButtonClick = (event) => {
-    alert("Button clicked!");
+    alert(event.target.innerText);  // button 태그에 있는 여행지가 옴
     console.log("Button clicked!", event.target);
   };
 

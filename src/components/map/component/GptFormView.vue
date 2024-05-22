@@ -108,10 +108,14 @@ const GptSubmit = async() => {
 }
 input {
   width: 100%;
-  color: #969696;
+  color: black; /* 사용자 입력 텍스트 색상 */
   border: 1px solid #e4e4e7;
   height: 34px;
   border-radius: 5px;
+}
+
+input::placeholder {
+  color: #969696; /* placeholder 색상 */
 }
 label {
   color: #18181b;
@@ -125,7 +129,7 @@ label {
 button {
   flex: 1;
   height: 40px;
-  background-color: #4caf50;
+  background-color: #5AB2FF;
   color: white;
   border: none;
   border-radius: 5px;
@@ -133,6 +137,6 @@ button {
   cursor: pointer;
 }
 button:hover {
-  background-color: #45a049;
+  background-color: #A0DEFF;
 }
 </style>

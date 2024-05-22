@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import { useGPTStore } from "@/stores/gpt";
 import { ref, watch, nextTick } from "vue";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const gptStore = useGPTStore();
 const { gptResponse, lottieContainer, anim } = storeToRefs(gptStore);
@@ -55,10 +56,11 @@ watch(gptResponse, async () => {
   z-index: 10; /* text_box보다 높은 z-index 설정 */
 }
 
-.gpt-button {
-  background-color: #45a049;
+::v-deep .gpt-button {
+  /* background-color: #A0DEFF; */
+  background-color: #5AB2FF;
   color: white;
-  padding: 10px;
+  padding: 3px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -68,8 +70,12 @@ watch(gptResponse, async () => {
   margin-bottom: 1em; /* 문단 간의 간격을 조정 */
 }
 
-::v-deep .gpt-button {
+/* ::v-deep .gpt-button {
   background-color: #369636;
+} */
+
+::v-deep .gpt-button:hover {
+  background-color: #F6F5F2;
 }
 
 ::v-deep h1, h2, h3, h4, h5, h6 {
