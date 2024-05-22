@@ -14,3 +14,8 @@ export const deletePlanApi = async (planId) => {
   const response = await Authapi.delete(`plan/${planId}`);
   return response;
 };
+
+export const modifyPlanApi = async (schedule,planId) => {
+  const response = await Authapi.post(`plan/${planId}`,schedule);
+  return response;
+};

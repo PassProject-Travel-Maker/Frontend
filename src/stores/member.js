@@ -69,9 +69,6 @@ export const useMemberStore = defineStore("member", () => {
     };
   };
 
-  const getRandomColor = () => {
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
-  };
 
   const getLatLng = (area) => {
     location.value = {

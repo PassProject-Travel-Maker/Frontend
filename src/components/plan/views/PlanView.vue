@@ -4,7 +4,7 @@ import PlanItem from "@/components/plan/component/PlanItem.vue";
 import { storeToRefs } from "pinia";
 import { usePlanStore } from "@/stores/plan";
 import Draggable from "vue3-draggable";
-import { createPlanApi } from "@/apis/planApi";
+import { createPlanApi,modifyPlanApi } from "@/apis/planApi";
 import { Switch } from "@headlessui/vue";
 import { useCategoryMapStore } from "@/stores/map.js";
 import { useRouter, useRoute } from "vue-router";
@@ -99,8 +99,19 @@ const saveSchedule = async () => {
   };
 
   console.log(schedule);
-  const response = await createPlanApi(schedule);
-  alert(response.data);
+
+  if(route.params.mode !== undefined)
+  {
+    //편집일때
+    const response = await modifyPlanApi(schedule, route.params.mode);
+    console.log(response);
+    alert("수정이 완료되었습니다");
+  }
+  else{
+    //생성일때
+    const response = await createPlanApi(schedule);
+    alert(response.data);
+  }
   router.push({name : "mypage"});
 };
 </script>
@@ -179,7 +190,7 @@ const saveSchedule = async () => {
       @click="deleteSchedule"
       type="button"
       class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-      v-if="deletedchecked.length > 0">
+      v-if="deletedchecked.length > 0" >
       삭제
     </button>
   </div>

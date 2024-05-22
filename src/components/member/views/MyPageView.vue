@@ -4,22 +4,20 @@ import MyTravelItem from "@/components/member/component/MyTravelItem.vue";
 import MyPlanModal from "@/components/member/component/MyPlanModal.vue";
 import { ref, onMounted, watch } from "vue";
 import { useMemberStore } from "@/stores/member";
-import { useAuthStore } from "@/stores/auth";
 import { storeToRefs } from "pinia";
 import { jwtDecode } from "jwt-decode";
 import { getLocalStorageToken } from "@/utils/localstorage";
 const emit = defineEmits(["close"]);
 const memberStore = useMemberStore();
-const authStore = useAuthStore();
 
 const { getMyInfo, getMyTravelList, getPlanDetail } = memberStore;
 const { myInfo, myTravelList, myPlan } = storeToRefs(memberStore);
 // onMounted로 useMemberStore에 있는 myInfo, myTravelList 메소드 호출하기
 
 const isShow = ref(false);
-
+ 
 onMounted(() => {
-  //   console.log("user id: ", authStore.user.id);
+  console.log("마운트")
   const info = jwtDecode(getLocalStorageToken());
   getMyInfo(info.id);
   getMyTravelList(info.id);
