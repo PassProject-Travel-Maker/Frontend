@@ -35,6 +35,7 @@ console.log(pickedindex);
       :plan="plan.attractionInfoDto"
       style="cursor: pointer"
       @click="getLatLng(plan.attractionInfoDto)"
+      :checkbox="false"
       class="hover:bg-sky-700" />
   </ul>
 </template>

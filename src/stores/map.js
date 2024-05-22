@@ -41,5 +41,15 @@ export const useCategoryMapStore = defineStore("category", () => {
     location.value.longitude = lng;
   };
 
-  return { sidos, guguns, getSido, getGugun, areas, getAttraction, location };
+  const getLatLng = (area) => {
+    location.value = {
+      latitude: area.latitude,
+      longitude: area.longitude,
+      level: 8,
+    };
+
+    console.log(location.value);
+  };
+
+  return { sidos, guguns, getSido, getGugun, areas, getAttraction, location, getLatLng };
 });
