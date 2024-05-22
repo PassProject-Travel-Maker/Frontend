@@ -2,8 +2,6 @@
 import { ref } from "vue";
 import { useGPTStore } from "@/stores/gpt.js";
 import { storeToRefs } from "pinia";
-import Lottie from "lottie-web";
-import animationData from "@/assets/anim1.json";
 
 const location = ref("");
 const period = ref("");
@@ -11,14 +9,13 @@ const peopleNum = ref("");
 const cost = ref("");
 const etc = ref("");
 
-const isLoading = ref(false);
 // const lottieContainer = ref(null);
 // const anim = ref(null);
 
 const gptstore = useGPTStore();
 
 const { postDataToGPT } = gptstore;
-const { gptText, gptResponse, lottieContainer, anim } = storeToRefs(gptstore);
+const {isLoading} = storeToRefs(gptstore);
 
 const GptSubmit = async () => {
   const data = {
@@ -28,14 +25,14 @@ const GptSubmit = async () => {
     cost: cost.value,
     etc: etc.value,
   };
-  isLoading.value = !isLoading.value;
+  isLoading.value=true;
   console.log(isLoading.value);
   try {
     await postDataToGPT(data);
   } catch (e) {
     console.log(e);
   } finally {
-    isLoading.value = !isLoading.value;
+    isLoading.value=false;
   }
 
   //

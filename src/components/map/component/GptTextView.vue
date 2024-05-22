@@ -1,29 +1,48 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useGPTStore } from "@/stores/gpt";
-import { ref, watch, nextTick } from "vue";
+import { watch, nextTick, onMounted} from "vue";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const gptStore = useGPTStore();
-const { gptResponse, lottieContainer, anim } = storeToRefs(gptStore);
+const { gptResponse, lottieContainer, anim,isLoading } = storeToRefs(gptStore);
 const { handleButtonClick } = gptStore;
 
+const addEventListenersToButtons = () => {
+  const buttons = document.querySelectorAll('.gpt-button');
+  buttons.forEach(button => {
+    button.removeEventListener('click', handleButtonClick); // 중복 방지
+    button.addEventListener('click', handleButtonClick);
+  });
+};
+
 watch(gptResponse, async () => {
+  console.log("gpt응답감시")
   if (anim.value) {
     anim.value.destroy();
   }
   await nextTick();
-  const buttons = document.querySelectorAll('.gpt-button');
-  buttons.forEach(button => {
-    button.addEventListener('click', handleButtonClick);
-  });
+  addEventListenersToButtons();
 });
+
+watch(isLoading, async() => {
+  console.log("로딩감시")
+  await nextTick();
+  addEventListenersToButtons();
+});
+
+onMounted( ()=>{
+  console.log("설마 마운트되나");
+  addEventListenersToButtons();
+})
 </script>
 
 <template>
   <div class="gpt-container">
     <div class="animation-div" ref="lottieContainer"></div>
-    <div class="text_box" v-html="gptResponse" v-if="gptResponse"></div>
+    <div class="text_box" v-html="gptResponse" v-if="!isLoading">
+     
+    </div>
   </div>
 </template>
 

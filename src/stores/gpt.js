@@ -13,6 +13,7 @@ export const useGPTStore = defineStore("gpt", () => {
   const lottieContainer = ref(null);
   const anim = ref(null);
   const selectedTab = ref(0);
+  const isLoading = ref(false);
 
   const postDataToGPT = async (data) => {
     console.log(data);
@@ -37,6 +38,8 @@ export const useGPTStore = defineStore("gpt", () => {
       anim.value = null;
     }
 
+    gptText.value="";
+    gptResponse.value="";
     // 데이터 가공 함수
     gptText.value = response.data
       .replace(/\[\[/g, '<button class="gpt-button">')
@@ -77,5 +80,6 @@ export const useGPTStore = defineStore("gpt", () => {
     handleButtonClick,
     keywords,
     selectedTab,
+    isLoading
   };
 });
