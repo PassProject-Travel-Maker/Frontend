@@ -17,7 +17,6 @@ const addEventListenersToButtons = () => {
 };
 
 watch(gptResponse, async () => {
-  console.log("gpt응답감시")
   if (anim.value) {
     anim.value.destroy();
   }
@@ -26,13 +25,11 @@ watch(gptResponse, async () => {
 });
 
 watch(isLoading, async() => {
-  console.log("로딩감시")
   await nextTick();
   addEventListenersToButtons();
 });
 
 onMounted( ()=>{
-  console.log("설마 마운트되나");
   addEventListenersToButtons();
 })
 </script>
