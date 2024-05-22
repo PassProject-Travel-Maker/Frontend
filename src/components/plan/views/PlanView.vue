@@ -2,15 +2,19 @@
 import PlanItem from "@/components/plan/component/PlanItem.vue";
 import { storeToRefs } from "pinia";
 import { usePlanStore } from "@/stores/plan";
+
 import Draggable from "vue3-draggable";
 import { createPlanApi } from "@/apis/planApi";
 import { Switch } from "@headlessui/vue";
-
-
+import { useCategoryMapStore } from "@/stores/map.js";
+const mapstore = useCategoryMapStore();
+const { getLatLng } = mapstore;
+const { areas, location } = storeToRefs(mapstore);
 
 const planstore = usePlanStore();
-const { addDay,deleteArea } = planstore;
-const { dayForPlanDtoList, picked, pickedindex, title, description,enabled } = storeToRefs(planstore);
+const { addDay, deleteSchedule, removeDay } = planstore;
+const { dayForPlanDtoList, picked, pickedindex, title, description, enabled, deletedchecked } =
+  storeToRefs(planstore);
 
 const saveSchedule = async () => {
   //스케줄을 추가하게 되면 카카오 정보는 따로 구분해줘야한다.
@@ -19,7 +23,6 @@ const saveSchedule = async () => {
   temp.map((day) => {
     day.scheduleForPlanDtoList.forEach((schedule, index) => {
       if (schedule.attrType === "KAKAO") {
-
         let data = {
           attractionId: schedule.attractionId,
           attrType: schedule.attrType,
@@ -55,8 +58,8 @@ const saveSchedule = async () => {
     <div class="day_box" v-for="day in dayForPlanDtoList" :key="day.num">
       <span :class="{ selected: picked === day.num }" @click="picked = day.num">
         {{ day.num }} 일차
-        <i class="bi bi-x" @click="removeDay(day.num)"></i>
       </span>
+      <i class="bi bi-x" @click="removeDay(day.num)"></i>
     </div>
     <div class="day_box" @click="addDay">날짜 추가</div>
   </div>
@@ -66,18 +69,20 @@ const saveSchedule = async () => {
   <!-- toggle -->
   <div>
     <span v-if="enabled">활성중</span>
-    <span v-else>비활성화</span>
+    <span v-else>비활성화 </span>
     <Switch
       v-model="enabled"
       :class="enabled ? 'bg-teal-900' : 'bg-teal-700'"
-      class="relative inline-flex h-[16px] w-[32px] sm:h-[20px] sm:w-[40px] md:h-[24px] md:w-[48px] lg:h-[28px] lg:w-[56px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-    >
+      class="relative inline-flex h-[16px] w-[32px] sm:h-[20px] sm:w-[40px] md:h-[24px] md:w-[48px] lg:h-[28px] lg:w-[56px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
       <span class="sr-only">Use setting</span>
       <span
         aria-hidden="true"
-        :class="enabled ? 'translate-x-4 sm:translate-x-5 md:translate-x-6 lg:translate-x-7' : 'translate-x-0'"
-        class="pointer-events-none inline-block h-[12px] w-[12px] sm:h-[16px] sm:w-[16px] md:h-[20px] md:w-[20px] lg:h-[24px] lg:w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-      />
+        :class="
+          enabled
+            ? 'translate-x-4 sm:translate-x-5 md:translate-x-6 lg:translate-x-7'
+            : 'translate-x-0'
+        "
+        class="pointer-events-none inline-block h-[12px] w-[12px] sm:h-[16px] sm:w-[16px] md:h-[20px] md:w-[20px] lg:h-[24px] lg:w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out" />
     </Switch>
   </div>
 
@@ -98,7 +103,9 @@ const saveSchedule = async () => {
     <PlanItem
       v-for="plan in dayForPlanDtoList[pickedindex].scheduleForPlanDtoList"
       :key="plan"
-      :plan="plan" />
+      :plan="plan"
+      @click="getLatLng(plan)"
+      :checkbox="true" />
   </ul>
 
   <br />
@@ -115,9 +122,10 @@ const saveSchedule = async () => {
       저장
     </button>
     <button
-    @click="deleteArea"
+      @click="deleteSchedule"
       type="button"
-      class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+      class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+      v-if="deletedchecked.length > 0">
       삭제
     </button>
   </div>

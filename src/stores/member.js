@@ -1,8 +1,11 @@
 import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 import { getMyInfoApi, getMyTravelListApi } from "@/apis/memberApi";
-import { getPlanApi } from "@/apis/planApi";
+import { getPlanApi, deletePlanApi } from "@/apis/planApi";
+import { useRouter } from "vue-router";
+
 export const useMemberStore = defineStore("member", () => {
+  const router = useRouter();
   const myInfo = ref({});
   const myTravelList = ref({});
   const myPlan = ref({});
@@ -80,6 +83,12 @@ export const useMemberStore = defineStore("member", () => {
     console.log(location.value);
   };
 
+  const deletePlan = async (planId) => {
+    await deletePlanApi(planId);
+    console.log("삭제");
+    router.go();
+  };
+
   return {
     getMyInfo,
     getMyTravelList,
@@ -95,5 +104,6 @@ export const useMemberStore = defineStore("member", () => {
     myPath,
     makePath,
     colors,
+    deletePlan,
   };
 });
