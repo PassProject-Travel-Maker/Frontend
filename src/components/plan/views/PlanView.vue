@@ -1,21 +1,69 @@
 <script setup>
+import { onMounted } from "vue";
 import PlanItem from "@/components/plan/component/PlanItem.vue";
 import { storeToRefs } from "pinia";
 import { usePlanStore } from "@/stores/plan";
-
 import Draggable from "vue3-draggable";
 import { createPlanApi } from "@/apis/planApi";
 import { Switch } from "@headlessui/vue";
 import { useCategoryMapStore } from "@/stores/map.js";
+import { useRouter, useRoute } from "vue-router";
+import { useMemberStore } from "@/stores/member";
+const memberstore = useMemberStore();
+const { myPlan } = storeToRefs(memberstore);
+
 const mapstore = useCategoryMapStore();
 const { getLatLng } = mapstore;
 const { areas, location } = storeToRefs(mapstore);
-
+const route = useRoute();
 const planstore = usePlanStore();
 const { addDay, deleteSchedule, removeDay } = planstore;
-const { dayForPlanDtoList, picked, pickedindex, title, description, enabled, deletedchecked } =
-  storeToRefs(planstore);
+const {
+  dayForPlanDtoList,
+  picked,
+  pickedindex,
+  title,
+  description,
+  enabled,
+  deletedchecked,
+  daycount,
+} = storeToRefs(planstore);
 
+onMounted(() => {
+  console.log(route);
+  if (route.params.mode !== undefined) {
+    console.log(myPlan.value);
+
+    //데이터 초기화
+    title.value = myPlan.value.title;
+    description.value = myPlan.value.description;
+    daycount.value = Number(myPlan.value.dayDetailResponseDtoList.length);
+    picked.value = 1;
+    pickedindex.value = 0;
+    enabled.value = false;
+    deletedchecked.value = [];
+
+    let day = [];
+    myPlan.value.dayDetailResponseDtoList.forEach((item, index) => {
+      //아이템
+      //
+      let data = [];
+      item.scheduleDetailResponseDtoList.forEach((schedule) => {
+        data.push(schedule.attractionInfoDto2);
+      });
+      console.log(data);
+
+      day.push({
+        num: index + 1,
+        scheduleForPlanDtoList: data,
+      });
+    });
+
+    console.log(day);
+    dayForPlanDtoList.value = day;
+    //데이터 변환
+  }
+});
 const saveSchedule = async () => {
   //스케줄을 추가하게 되면 카카오 정보는 따로 구분해줘야한다.
 
@@ -48,6 +96,8 @@ const saveSchedule = async () => {
     description: description.value,
     dayForPlanDtoList: dayForPlanDtoList.value,
   };
+
+  console.log(schedule);
   const response = await createPlanApi(schedule);
   alert(response.data);
 };

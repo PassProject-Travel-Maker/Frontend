@@ -26,8 +26,8 @@ export const useMemberStore = defineStore("member", () => {
     const path = [];
     dayForPlanDtoList.value[pickedindex.value].scheduleDetailResponseDtoList.forEach((schedule) => {
       path.push({
-        lat: schedule.attractionInfoDto.latitude,
-        lng: schedule.attractionInfoDto.longitude,
+        lat: schedule.attractionInfoDto2.latitude,
+        lng: schedule.attractionInfoDto2.longitude,
       });
     });
     console.log(path);
@@ -62,9 +62,9 @@ export const useMemberStore = defineStore("member", () => {
 
     location.value = {
       latitude:
-        dayForPlanDtoList.value[0].scheduleDetailResponseDtoList[0].attractionInfoDto.latitude,
+        dayForPlanDtoList.value[0].scheduleDetailResponseDtoList[0].attractionInfoDto2.latitude,
       longitude:
-        dayForPlanDtoList.value[0].scheduleDetailResponseDtoList[0].attractionInfoDto.longitude,
+        dayForPlanDtoList.value[0].scheduleDetailResponseDtoList[0].attractionInfoDto2.longitude,
       level: 10,
     };
   };
