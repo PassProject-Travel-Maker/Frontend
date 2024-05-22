@@ -16,7 +16,7 @@ const { setPlan } = planstore;
 const { location } = storeToRefs(mapstore);
 const isShow = ref(false);
 const area = ref({});
-console.log(location.value)
+console.log(location.value);
 const onClickMapMarker = (eventarea, index) => {
   area.value = areas.value[index];
   isShow.value = true;
@@ -82,7 +82,11 @@ const SearchPlace = () => {
         class="form-select me-2 col-span-3 border rounded-md"
         placeholder="매장 검색"
         v-model="keywords" />
-      <button @click="SearchPlace">검색</button>
+      <button
+        @click="SearchPlace"
+        class="btn btn-outline-success col-span-1 bg-slate-300 text-black rounded-md hover:bg-amber-300 py-2">
+        검색
+      </button>
     </div>
     <KakaoMap
       :lat="location.latitude"
