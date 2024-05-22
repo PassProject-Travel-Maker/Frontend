@@ -43,24 +43,24 @@ onMounted(() => {
     enabled.value = false;
     deletedchecked.value = [];
 
-    let day = [];
+    let editday = [];
     myPlan.value.dayDetailResponseDtoList.forEach((item, index) => {
       //아이템
       //
-      let data = [];
+      let editschedule = [];
       item.scheduleDetailResponseDtoList.forEach((schedule) => {
-        data.push(schedule.attractionInfoDto2);
+        editschedule.push(schedule.attractionInfoDto2);
       });
-      console.log(data);
+      console.log(editschedule);
 
-      day.push({
+      editday.push({
         num: index + 1,
-        scheduleForPlanDtoList: data,
+        scheduleForPlanDtoList: editschedule,
       });
     });
 
-    console.log(day);
-    dayForPlanDtoList.value = day;
+    console.log(editday);
+    dayForPlanDtoList.value = editday;
     //데이터 변환
   }
 });
@@ -71,6 +71,7 @@ const saveSchedule = async () => {
   temp.map((day) => {
     day.scheduleForPlanDtoList.forEach((schedule, index) => {
       if (schedule.attrType === "KAKAO") {
+        console.log("카카오");
         let data = {
           attractionId: schedule.attractionId,
           attrType: schedule.attrType,
@@ -85,11 +86,14 @@ const saveSchedule = async () => {
             title: schedule.title,
           },
         };
+        console.log(data);
 
         day.scheduleForPlanDtoList[index] = data;
       }
     });
   });
+  dayForPlanDtoList.value = temp;
+
   const schedule = {
     title: title.value,
     description: description.value,
