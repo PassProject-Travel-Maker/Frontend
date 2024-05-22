@@ -14,8 +14,9 @@ const { myPlan } = storeToRefs(memberstore);
 
 const mapstore = useCategoryMapStore();
 const { getLatLng } = mapstore;
-const { areas, location } = storeToRefs(mapstore);
+
 const route = useRoute();
+const router = useRouter();
 const planstore = usePlanStore();
 const { addDay, deleteSchedule, removeDay } = planstore;
 const {
@@ -100,6 +101,7 @@ const saveSchedule = async () => {
   console.log(schedule);
   const response = await createPlanApi(schedule);
   alert(response.data);
+  router.push({name : "mypage"});
 };
 </script>
 
