@@ -84,9 +84,12 @@ export const useMemberStore = defineStore("member", () => {
   };
 
   const deletePlan = async (planId) => {
-    await deletePlanApi(planId);
-    console.log("삭제");
-    router.go();
+    if(confirm("정말 삭제하시겠습니까?") == true) {
+      alert("삭제 되었습니다.");
+      await deletePlanApi(planId);
+      console.log("삭제");
+      router.go();
+    }
   };
 
   return {
