@@ -18,7 +18,7 @@ const replaceImg = (e) => {
 </script>
 
 <template>
-  <li class="flex justify-between gap-x-6 py-5 pl plan_box h-24" @click="$emit('click')">
+  <li  style="cursor: pointer" class="flex justify-between gap-x-6 py-5 pl plan_box h-24" @click="$emit('click')">
     <div class="flex min-w-0 gap-x-4">
       <!-- 이 이동하는 아이콘은 순서바꾸기 버튼이 활성화 됐을 때만 보이면 될 거 같아유 -->
       <svg

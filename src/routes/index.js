@@ -37,6 +37,11 @@ const router = createRouter({
           name: "map",
           component: MapView,
         },
+        {
+          path: "/map/:mode",
+          name: "edit",
+          component: MapView,
+        },
       ],
     },
   ],

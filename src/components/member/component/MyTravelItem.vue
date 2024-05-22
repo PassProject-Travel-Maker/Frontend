@@ -2,10 +2,15 @@
 defineProps({
   plan: Object,
 });
+
+const emit = defineEmits(["click"]);
 </script>
 
 <template>
-  <article :key="plan.id" class="flex max-w-xl flex-col items-start justify-between">
+  <article
+    :key="plan.id"
+    class="flex max-w-xl flex-col items-start justify-between"
+    @click="$emit('click')">
     <!-- 사각형 모양의 사진 -->
     <div class="w-full mb-4">
       <img

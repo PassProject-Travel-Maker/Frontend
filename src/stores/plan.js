@@ -108,5 +108,6 @@ export const usePlanStore = defineStore("plan", () => {
     deleteSchedule,
     deletedchecked,
     removeDay,
+    daycount,
   };
 });

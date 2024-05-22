@@ -2,13 +2,20 @@
 import PlanItem from "@/components/plan/component/PlanItem.vue";
 import { useMemberStore } from "@/stores/member";
 import { storeToRefs } from "pinia";
-const memberstore = useMemberStore();
+import { useRouter } from "vue-router";
 
+const memberstore = useMemberStore();
+const router = useRouter();
 const { getLatLng, deletePlan } = memberstore;
 const { dayForPlanDtoList, picked, pickedindex, colors, myPlan } = storeToRefs(memberstore);
 
 console.log(dayForPlanDtoList);
 console.log(pickedindex);
+
+const moveToPlanEditForm = () => {
+  router.push({ name: "edit", params: { mode: myPlan.value.id } });
+  document.body.style.overflow = "auto";
+};
 </script>
 
 <template>
@@ -21,7 +28,7 @@ console.log(pickedindex);
   </div>
   <hr class="divider" />
   <div class="icons-container">
-    <i class="bi bi-pencil-square icon"></i>
+    <i class="bi bi-pencil-square icon" @click="moveToPlanEditForm"></i>
     <i class="bi bi-trash3 icon" @click="deletePlan(myPlan.id)"></i>
   </div>
   <ul
@@ -31,12 +38,10 @@ console.log(pickedindex);
     }">
     <PlanItem
       v-for="plan in dayForPlanDtoList[pickedindex].scheduleDetailResponseDtoList"
-      :key="plan.attractionInfoDto.id"
-      :plan="plan.attractionInfoDto"
-      style="cursor: pointer"
-      @click="getLatLng(plan.attractionInfoDto)"
-      :checkbox="false"
-      class="hover:bg-sky-700" />
+      :key="plan.attractionInfoDto2.attractionId"
+      :plan="plan.attractionInfoDto2"
+      @click="getLatLng(plan.attractionInfoDto2)"
+      :checkbox="false" />
   </ul>
 </template>
 

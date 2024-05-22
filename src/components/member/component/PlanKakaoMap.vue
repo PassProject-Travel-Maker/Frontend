@@ -6,7 +6,8 @@ import { storeToRefs } from "pinia";
 
 const memberstore = useMemberStore();
 const { makePath } = memberstore;
-const { dayForPlanDtoList, picked, pickedindex, location, myPath, colors, myPlan } = storeToRefs(memberstore);
+const { dayForPlanDtoList, picked, pickedindex, location, myPath, colors, myPlan } =
+  storeToRefs(memberstore);
 
 const onClickMapMarker = (eventarea, index) => {};
 
@@ -24,20 +25,24 @@ onMounted(() => {
     <div style="color: #667085">{{ myPlan.description }}</div>
   </div>
   <div class="map-container">
-      <KakaoMap
+    <KakaoMap
       :lat="location.latitude"
       :lng="location.longitude"
       width="100%"
       :level="location.level">
       <KakaoMapMarker
         v-for="plan in dayForPlanDtoList[pickedindex].scheduleDetailResponseDtoList"
-        :key="plan.attractionInfoDto.id"
-        :lat="plan.attractionInfoDto.latitude"
-        :lng="plan.attractionInfoDto.longitude"
+        :key="plan.attractionInfoDto2.id"
+        :lat="plan.attractionInfoDto2.latitude"
+        :lng="plan.attractionInfoDto2.longitude"
         :clickable="true"
         @onClickKakaoMapMarker="onClickMapMarker(area, index)">
       </KakaoMapMarker>
-      <KakaoMapPolyline :latLngList="myPath" :endArrow="true" :strokeColor="colors[pickedindex]" strokeOpacity="1" />
+      <KakaoMapPolyline
+        :latLngList="myPath"
+        :endArrow="true"
+        :strokeColor="colors[pickedindex]"
+        strokeOpacity="1" />
     </KakaoMap>
   </div>
 </template>
