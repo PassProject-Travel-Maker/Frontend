@@ -15,6 +15,7 @@ const mapstore = useCategoryMapStore();
 const gptstore = useGPTStore();
 const { setPlan } = planstore;
 const { location } = storeToRefs(mapstore);
+const {getLatLng} = mapstore;
 const { keywords } = storeToRefs(gptstore);
 const isShow = ref(false);
 const area = ref({});
@@ -121,13 +122,14 @@ const SearchPlace = () => {
         :clickable="true"
         @onClickKakaoMapMarker="onClickMapMarker(area, index)">
       </KakaoMapMarker>
+      <ul role="list" class="divide-y divide-gray-100">
+    <AreaListItem v-for="area in areas" :key="area.id" :area="area"
+    @showarea="getLatLng(area)"
+      @addplan="setPlan(area)" />
+  </ul>
     </KakaoMap>
     <MapModal :area="area" v-show="isShow" @close="close" :class="{ show: isShow }"></MapModal>
   </div>
-
-  <ul role="list" class="divide-y divide-gray-100">
-    <AreaListItem v-for="area in areas" :key="area.id" :area="area" @click="setPlan(area)" />
-  </ul>
 </template>
 
 <style scoped>
@@ -142,5 +144,16 @@ const SearchPlace = () => {
   height: 100px;
   border: 1px solid black; */
   padding-left: 10px;
+}
+ul{
+  width: 30%;
+  position : absolute;
+  top: 0;
+  left:0;
+  opacity: 0.8;
+  background-color: #e4e4e7;
+  overflow: auto;
+  height: 100%;
+  z-index: 5;
 }
 </style>

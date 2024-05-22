@@ -13,6 +13,7 @@ const { setPlan } = planstore;
 
 const mapstore = useCategoryMapStore();
 const { areas, location } = storeToRefs(mapstore);
+const {getLatLng} = mapstore;
 
 const map = ref();
 const isShow = ref(false);
@@ -52,16 +53,18 @@ const close = () => {
         :clickable="true"
         @onClickKakaoMapMarker="onClickMapMarker(area, index)">
       </KakaoMapMarker>
-    </KakaoMap>
-    <MapModal :area="area" v-show="isShow" @close="close" :class="{ show: isShow }"></MapModal>
-  </div>
-  <ul role="list" class="divide-y divide-gray-100">
+      <ul role="list" class="divide-y divide-gray-100">
     <AreaListItem
       v-for="area in areas"
       :key="area.attractionId"
       :area="area"
-      @click="setPlan(area)" />
+      @showarea="getLatLng(area)"
+      @addplan="setPlan(area)" />
   </ul>
+    </KakaoMap>
+    <MapModal :area="area" v-show="isShow" @close="close" :class="{ show: isShow }"></MapModal>
+  </div>
+  
 </template>
 
 <style scoped>
@@ -71,5 +74,18 @@ const close = () => {
   height: 660px;
   border-radius: 5px;
   border: 1px solid #e4e4e7;
+  position: relative;
+}
+
+ul{
+  width: 30%;
+  position : absolute;
+  top: 0;
+  left:0;
+  opacity: 0.8;
+  background-color: #e4e4e7;
+  overflow: auto;
+  height: 100%;
+  z-index: 5;
 }
 </style>
