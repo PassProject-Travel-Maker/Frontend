@@ -13,7 +13,9 @@ const { selectedTab } = storeToRefs(gptStore);
 const selectCategory = (index) => {
   selectedTab.value = index;
 };
-
+function changeTab(index) {
+  selectedTab.value = index;
+}
 const categories = ref({
   "카테고리 별 검색": [
     {
@@ -39,7 +41,7 @@ const categories = ref({
 <template>
   <PlanForm />
   <div class="w-full px-2 mt-10 sm:px-0" style="width: 100%">
-    <TabGroup :selectedIndex="selectedTab">
+    <TabGroup @change="changeTab" :selectedIndex="selectedTab">
       <TabList class="inline-flex rounded-xl">
         <Tab
           v-for="category in Object.keys(categories)"
