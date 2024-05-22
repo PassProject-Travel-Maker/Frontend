@@ -6,12 +6,11 @@ import GptTextView from "@/components/map/component/GptTextView.vue";
 <template>
   <div class="gpt_container">
     <div class="text">
-      <h1>여행에 필요한 정보를 입력해주세요</h1>
-
-      <h3>
-        여행 날짜, 지역, 인원, 경비 등을 입력해보세요! <br />
-        GPT가 일정에 맞게 여행지를 <strong>추천</strong>해드립니다! 최고의 여행을 경험해보세요
-      </h3>
+      <p>
+        GPT가 일정에 맞게 여행지를 <strong>추천</strong>해드립니다! <br/>
+        <button class="gpt-button">버튼</button>을 클릭하면 여행지 정보도 조회가 가능해요😄<br/>
+        최고의 여행을 경험해보세요!
+      </p>
     </div>
     <div class="gpt_box">
       <GptFormView class="box input" />
@@ -60,4 +59,19 @@ import GptTextView from "@/components/map/component/GptTextView.vue";
   padding-left: 20px;
   padding-top: 12px;
 }
+
+::v-deep .gpt-button {
+  /* background-color: #A0DEFF; */
+  /* background-color: #5AB2FF; */
+  background-color: #F1F1F1;
+  /* color: white; */
+  color: #5AB2FF;
+  padding: 3px;
+  /* border: none; */
+  border: 1px solid #5AB2FF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 </style>

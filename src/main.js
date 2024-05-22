@@ -6,6 +6,7 @@ import routes from "./routes";
 import App from "./App.vue";
 import { useKakao } from "vue3-kakao-maps/@utils";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 const { VITE_KAKAO_MAP_API_KEY } = import.meta.env;
 useKakao(VITE_KAKAO_MAP_API_KEY);
 const app = createApp(App);

@@ -45,7 +45,7 @@ const categories = ref({
               'border-t border-l border-r border-gray-300',
               selected
                 ? 'bg-blue-400 text-white shadow'
-                : 'text-blue-500 hover:bg-white/[0.12] hover:text-white',
+                : 'text-blue-500 hover:bg-white/[0.12] hover:text-black',
             ]">
             {{ category }}
           </button>

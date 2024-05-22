@@ -3,10 +3,11 @@ import { defineStore } from "pinia";
 import { postDataToGPTApi } from "@/apis/gptApi.js";
 import Lottie from "lottie-web";
 import animationData from "@/assets/anim1.json";
+import { marked } from "marked";
 
 export const useGPTStore = defineStore("gpt", () => {
-  const gptText = ref("");
-  const gptResponse = ref('<div class="md-body"> <md-block>');
+  const gptText = ref('');
+  const gptResponse = ref('');
 
   const lottieContainer = ref(null);
   const anim = ref(null);
@@ -34,14 +35,24 @@ export const useGPTStore = defineStore("gpt", () => {
       anim.value = null;
     }
 
-    //데이터 가공 함수
+    // 데이터 가공 함수
+    gptText.value = response.data
+      .replace(/\[\[/g, '<button class="gpt-button">')
+      .replace(/\]\]/g, '</button>');
 
-    gptText.value = response.data.replace(/\[\[/g, "<button>").replace(/\]\]/g, "</button>");
-
-    //
-    gptResponse.value = '<div class="md-body"> <md-block>';
-    gptResponse.value += gptText.value;
-    gptResponse.value += "</md-block> </div>";
+    // 마크다운을 HTML로 변환
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      // headerIds: false,
+      // tables: true,
+      breaks: true,
+      // pedantic: false,
+      sanitize: false,
+      // smartLists: true,
+      // smartypants: false
+    });
+    gptResponse.value = marked(gptText.value);
 
     console.log("gptText::::::");
     console.log(gptText.value);
@@ -49,5 +60,10 @@ export const useGPTStore = defineStore("gpt", () => {
     console.log(gptResponse.value);
   };
 
-  return { postDataToGPT, gptText, gptResponse, lottieContainer, anim };
+  const handleButtonClick = (event) => {
+    alert(event.target.innerText);  // button 태그에 있는 여행지가 옴
+    console.log("Button clicked!", event.target);
+  };
+
+  return { postDataToGPT, gptText, gptResponse, lottieContainer, anim, handleButtonClick };
 });
