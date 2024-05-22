@@ -5,7 +5,17 @@ import KakaoMapView from "@/components/map/component/KakaoMapView.vue";
 import KakaoMapSearhView from "@/components/map/component/KakaoMapSearhView.vue";
 import ChatGptView from "@/components/map/views/ChatGPTView.vue";
 import PlanForm from "@/components/map/component/PlanFormView.vue";
+import { useGPTStore } from "@/stores/gpt";
+import { storeToRefs } from "pinia";
+const gptStore = useGPTStore();
+const { selectedTab } = storeToRefs(gptStore);
 
+const selectCategory = (index) => {
+  selectedTab.value = index;
+};
+function changeTab(index) {
+  selectedTab.value = index;
+}
 const categories = ref({
   "카테고리 별 검색": [
     {
@@ -31,7 +41,7 @@ const categories = ref({
 <template>
   <PlanForm />
   <div class="w-full px-2 mt-10 sm:px-0" style="width: 100%">
-    <TabGroup>
+    <TabGroup @change="changeTab" :selectedIndex="selectedTab">
       <TabList class="inline-flex rounded-xl">
         <Tab
           v-for="category in Object.keys(categories)"
@@ -39,6 +49,7 @@ const categories = ref({
           :key="category"
           v-slot="{ selected }">
           <button
+            @click="selectCategory(e)"
             :class="[
               'inline-block rounded-t-xl py-2.5 px-4 text-sm font-medium font-bold leading-5',
               'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
