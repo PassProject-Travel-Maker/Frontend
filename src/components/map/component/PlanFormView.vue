@@ -57,4 +57,8 @@ label{
 .input_box {
   padding-left: 10px;
 }
+
+.bg-img {
+  
+}
 </style>
