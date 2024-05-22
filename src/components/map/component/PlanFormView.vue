@@ -10,12 +10,6 @@ const {title, description} = storeToRefs(planStore);
 <template>
   <div id="input_box">
     <div id="title_box">
-      <label for="title" >대표 이미지</label>
-      <input type="text" id="title" name="title" 
-      placeholder="아이콘 + 모달로 바꾸기"
-      v-model="title" />
-    </div>
-    <div id="title_box">
       <label for="title" >여행 제목</label>
       <input type="text" id="title" name="title"
       placeholder="여행제목을 입력해주세요"
