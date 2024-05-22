@@ -4,18 +4,20 @@ import { ref } from "vue";
 import AreaListItem from "@/components/map/component/AreaListItem.vue";
 import { usePlanStore } from "@/stores/plan.js";
 import { useCategoryMapStore } from "@/stores/map.js";
+import { useGPTStore } from "@/stores/gpt.js";
 import MapModal from "@/components/map/component/MapModal.vue";
 import { storeToRefs } from "pinia";
-const keywords = ref("");
 const areas = ref([]);
 
 const planstore = usePlanStore();
 const mapstore = useCategoryMapStore();
-
+const gptstore = useGPTStore();
 const { setPlan } = planstore;
 const { location } = storeToRefs(mapstore);
+const { keywords } = storeToRefs(gptstore);
 const isShow = ref(false);
 const area = ref({});
+
 console.log(location.value);
 const onClickMapMarker = (eventarea, index) => {
   area.value = areas.value[index];

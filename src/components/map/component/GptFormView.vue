@@ -1,10 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import {useGPTStore} from "@/stores/gpt.js";
-import { storeToRefs} from "pinia";
+import { useGPTStore } from "@/stores/gpt.js";
+import { storeToRefs } from "pinia";
 import Lottie from "lottie-web";
 import animationData from "@/assets/anim1.json";
-
 
 const location = ref("");
 const period = ref("");
@@ -19,9 +18,9 @@ const isLoading = ref(false);
 const gptstore = useGPTStore();
 
 const { postDataToGPT } = gptstore;
-const {gptText, gptResponse, lottieContainer, anim} = storeToRefs(gptstore);
+const { gptText, gptResponse, lottieContainer, anim } = storeToRefs(gptstore);
 
-const GptSubmit = async() => {
+const GptSubmit = async () => {
   const data = {
     location: location.value,
     period: period.value,
@@ -31,17 +30,13 @@ const GptSubmit = async() => {
   };
   isLoading.value = !isLoading.value;
   console.log(isLoading.value);
-    try{
-        await postDataToGPT(data);
-      }
-      catch(e)
-      {
-        console.log(e);
-
-      }
-      finally {
-        isLoading.value = !isLoading.value;
-      }
+  try {
+    await postDataToGPT(data);
+  } catch (e) {
+    console.log(e);
+  } finally {
+    isLoading.value = !isLoading.value;
+  }
 
   //
 };
@@ -52,7 +47,12 @@ const GptSubmit = async() => {
     <div class="input_box">
       <div id="location_box">
         <label for="location">여행 지역</label>
-        <input type="text" id="location" name="location" placeholder=" ex) 제주도" v-model="location" />
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder=" ex) 제주도"
+          v-model="location" />
       </div>
 
       <div id="period_box">
@@ -129,7 +129,7 @@ label {
 button {
   flex: 1;
   height: 40px;
-  background-color: #5AB2FF;
+  background-color: #5ab2ff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -137,6 +137,6 @@ button {
   cursor: pointer;
 }
 button:hover {
-  background-color: #A0DEFF;
+  background-color: #a0deff;
 }
 </style>

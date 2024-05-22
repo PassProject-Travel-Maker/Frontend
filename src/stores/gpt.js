@@ -6,9 +6,10 @@ import animationData from "@/assets/anim1.json";
 import { marked } from "marked";
 
 export const useGPTStore = defineStore("gpt", () => {
-  const gptText = ref('');
-  const gptResponse = ref('');
+  const gptText = ref("");
+  const gptResponse = ref("");
 
+  const keywords = ref("");
   const lottieContainer = ref(null);
   const anim = ref(null);
 
@@ -38,7 +39,7 @@ export const useGPTStore = defineStore("gpt", () => {
     // 데이터 가공 함수
     gptText.value = response.data
       .replace(/\[\[/g, '<button class="gpt-button">')
-      .replace(/\]\]/g, '</button>');
+      .replace(/\]\]/g, "</button>");
 
     // 마크다운을 HTML로 변환
     marked.setOptions({
@@ -61,9 +62,17 @@ export const useGPTStore = defineStore("gpt", () => {
   };
 
   const handleButtonClick = (event) => {
-    alert(event.target.innerText);  // button 태그에 있는 여행지가 옴
-    console.log("Button clicked!", event.target);
+    keywords.value = event.target.innerText;
+    console.log(keywords.value);
   };
 
-  return { postDataToGPT, gptText, gptResponse, lottieContainer, anim, handleButtonClick };
+  return {
+    postDataToGPT,
+    gptText,
+    gptResponse,
+    lottieContainer,
+    anim,
+    handleButtonClick,
+    keywords,
+  };
 });
