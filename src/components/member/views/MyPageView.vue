@@ -20,7 +20,6 @@ const isShow = ref(false);
 
 onMounted(() => {
   //   console.log("user id: ", authStore.user.id);
-
   const info = jwtDecode(getLocalStorageToken());
   getMyInfo(info.id);
   getMyTravelList(info.id);
@@ -38,7 +37,6 @@ const close = () => {
 };
 
 watch(isShow, () => {
-  console.log("모달인식");
   if (isShow.value) {
     document.body.style.overflow = "hidden";
   } else {

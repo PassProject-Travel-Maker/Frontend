@@ -5,8 +5,8 @@ import Lottie from "lottie-web";
 import animationData from "@/assets/anim1.json";
 
 export const useGPTStore = defineStore("gpt", () => {
-  const gptText = ref('');
-  const gptResponse = ref('<div class=md-body"> <md-block>');
+  const gptText = ref("");
+  const gptResponse = ref('<div class="md-body"> <md-block>');
 
   const lottieContainer = ref(null);
   const anim = ref(null);
@@ -14,7 +14,7 @@ export const useGPTStore = defineStore("gpt", () => {
   const postDataToGPT = async (data) => {
     console.log(data);
 
-    if(anim.value) {
+    if (anim.value) {
       anim.value.destroy();
       anim.value = null;
     }
@@ -29,20 +29,20 @@ export const useGPTStore = defineStore("gpt", () => {
 
     let response = await postDataToGPTApi(data);
 
-    if(anim.value) {
+    if (anim.value) {
       anim.value.destroy();
       anim.value = null;
     }
 
     //데이터 가공 함수
-    
-    gptText.value = response.data.replace(/\[\[/g, '<button>')
-    .replace(/\]\]/g, '</button>');
-    
+
+    gptText.value = response.data.replace(/\[\[/g, "<button>").replace(/\]\]/g, "</button>");
+
     //
+    gptResponse.value = '<div class="md-body"> <md-block>';
     gptResponse.value += gptText.value;
-    gptResponse.value += '</md-block> </div>';
-    
+    gptResponse.value += "</md-block> </div>";
+
     console.log("gptText::::::");
     console.log(gptText.value);
     console.log("gptResponse::::::");

@@ -4,8 +4,8 @@ import { useMemberStore } from "@/stores/member";
 import { storeToRefs } from "pinia";
 const memberstore = useMemberStore();
 
-const { getLatLng } = memberstore;
-const { dayForPlanDtoList, picked, pickedindex, colors } = storeToRefs(memberstore);
+const { getLatLng, deletePlan } = memberstore;
+const { dayForPlanDtoList, picked, pickedindex, colors, myPlan } = storeToRefs(memberstore);
 
 console.log(dayForPlanDtoList);
 console.log(pickedindex);
@@ -22,7 +22,7 @@ console.log(pickedindex);
   <hr class="divider" />
   <div class="icons-container">
     <i class="bi bi-pencil-square icon"></i>
-    <i class="bi bi-trash3 icon"></i>
+    <i class="bi bi-trash3 icon" @click="deletePlan(myPlan.id)"></i>
   </div>
   <ul
     class="plan_container"

@@ -9,3 +9,8 @@ export const getPlanApi = async (planId) => {
   const response = await Authapi.get(`plan/${planId}`);
   return response;
 };
+
+export const deletePlanApi = async (planId) => {
+  const response = await Authapi.delete(`plan/${planId}`);
+  return response;
+};
