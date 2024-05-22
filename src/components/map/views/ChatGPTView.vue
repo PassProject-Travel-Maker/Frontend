@@ -61,17 +61,18 @@ import GptTextView from "@/components/map/component/GptTextView.vue";
 }
 
 ::v-deep .gpt-button {
-  /* background-color: #A0DEFF; */
-  /* background-color: #5AB2FF; */
   background-color: #F1F1F1;
-  /* color: white; */
   color: #5AB2FF;
   padding: 3px;
-  /* border: none; */
   border: 1px solid #5AB2FF;
   border-radius: 5px;
   cursor: pointer;
 }
+
+::v-deep .gpt-button:hover {
+  background-color: #CDE8E5;
+}
+
 
 
 </style>

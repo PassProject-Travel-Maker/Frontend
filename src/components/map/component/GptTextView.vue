@@ -66,45 +66,36 @@ watch(gptResponse, async () => {
   cursor: pointer;
 }
 
-::v-deep .text_box li {
+ .text_box li {
   margin-bottom: 1em; /* 문단 간의 간격을 조정 */
 }
 
-/* ::v-deep .gpt-button {
-  background-color: #369636;
-} */
-
-::v-deep .gpt-button:hover {
-  background-color: #F6F5F2;
-}
-
-::v-deep h1, h2, h3, h4, h5, h6 {
+ h1, h2, h3, h4, h5, h6 {
   margin: 20px 0 10px;
   padding: 0;
   font-weight: bold;
 }
 
-::v-deep h1 {
+ h1 {
   font-size: 2em;
 }
 
-::v-deep h2 {
+ h2 {
   font-size: 1.75em;
 }
-
-::v-deep h3 {
+ h3 {
   font-size: 1.5em;
 }
 
-::v-deep h4 {
+ h4 {
   font-size: 1.25em;
 }
 
-::v-deep h5 {
+ h5 {
   font-size: 1em;
 }
 
-::v-deep h6 {
+ h6 {
   font-size: 0.875em;
 }
 </style>
