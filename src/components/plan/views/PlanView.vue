@@ -90,7 +90,6 @@ const saveSchedule = async () => {
       }
     });
   });
-
   const schedule = {
     title: title.value,
     description: description.value,
