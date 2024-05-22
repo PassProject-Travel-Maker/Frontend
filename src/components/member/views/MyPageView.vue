@@ -44,8 +44,8 @@ watch(isShow, () => {
 </script>
 
 <template>
-  <div id="background"></div>
-  <div class="bg-white py-24 sm:py-32 relative z-10">
+
+  <div class="bg-white py-24 sm:py-32 relative z-10 "  id="background">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <!-- 내 정보 조회 -->
         <div class="mx-auto max-w-2xl lg:mx-0 flex items-center">
@@ -80,7 +80,6 @@ watch(isShow, () => {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
 }
 
 #background::before,
@@ -128,6 +127,5 @@ watch(isShow, () => {
 
 .bg-white {
   position: relative;
-  z-index: 1;
 }
 </style>
