@@ -12,6 +12,7 @@ export const useGPTStore = defineStore("gpt", () => {
   const keywords = ref("");
   const lottieContainer = ref(null);
   const anim = ref(null);
+  const selectedTab = ref(0);
 
   const postDataToGPT = async (data) => {
     console.log(data);
@@ -62,6 +63,7 @@ export const useGPTStore = defineStore("gpt", () => {
   };
 
   const handleButtonClick = (event) => {
+    selectedTab.value = 1;
     keywords.value = event.target.innerText;
     console.log(keywords.value);
   };
@@ -74,5 +76,6 @@ export const useGPTStore = defineStore("gpt", () => {
     anim,
     handleButtonClick,
     keywords,
+    selectedTab,
   };
 });

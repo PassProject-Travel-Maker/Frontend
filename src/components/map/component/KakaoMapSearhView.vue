@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from "vue";
 import { KakaoMap, KakaoMapMarker } from "vue3-kakao-maps";
 import { ref } from "vue";
 import AreaListItem from "@/components/map/component/AreaListItem.vue";
@@ -27,11 +28,15 @@ const close = () => {
   isShow.value = false;
 };
 
+onMounted(() => {
+  if (keywords.value !== "") {
+    SearchPlace();
+  }
+});
 // 모든 이미지를 동적으로 가져오기
-const images = import.meta.glob('@/assets/img/kakao/*.png');
+const images = import.meta.glob("@/assets/img/kakao/*.png");
 // 이미지 경로를 배열로 변환
 const imagePaths = Object.keys(images);
-
 
 const SearchPlace = () => {
   if (keywords.value === "") {
@@ -48,10 +53,8 @@ const SearchPlace = () => {
         console.log(result);
 
         result.forEach((item) => {
-
           const idx = Math.floor(Math.random() * imagePaths.length);
           const selectedImage = imagePaths[idx];
-
 
           data.push({
             attractionId: Number(item.id) + 1000000,

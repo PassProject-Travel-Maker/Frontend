@@ -71,7 +71,6 @@ const saveSchedule = async () => {
   temp.map((day) => {
     day.scheduleForPlanDtoList.forEach((schedule, index) => {
       if (schedule.attrType === "KAKAO") {
-        console.log("카카오");
         let data = {
           attractionId: schedule.attractionId,
           attrType: schedule.attrType,
@@ -86,8 +85,6 @@ const saveSchedule = async () => {
             title: schedule.title,
           },
         };
-        console.log(data);
-
         day.scheduleForPlanDtoList[index] = data;
       }
     });
