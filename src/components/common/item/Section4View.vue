@@ -8,7 +8,11 @@ import HeaderView from "@/components/common/HeaderView.vue";
     <div id="title_box">
       <div id="title">자, 출발해볼까요?</div>
       <div id="subtitle">당신의 완벽한 여행이 기다리고 있습니다.</div>
-      <button class="px-3 py-1.5 text-sm font-semibold shadow-sm bg-yellow-400 hover:bg-yellow-500">Get Started <img src="@/assets/img/arrow.svg" /></button>
+      <RouterLink :to="{ name: 'map' }"
+        ><button
+          class="px-3 py-1.5 text-sm font-semibold shadow-sm bg-yellow-400 hover:bg-yellow-500">
+          Get Started <img src="@/assets/img/arrow.svg" /></button
+      ></RouterLink>
     </div>
   </div>
 </template>
@@ -25,14 +29,14 @@ import HeaderView from "@/components/common/HeaderView.vue";
   position: absolute;
   width: 40%;
   top: 10%;
-  left:50%;
-  transform:translateX(-50%);
+  left: 50%;
+  transform: translateX(-50%);
 }
 #title_box {
-  position: absolute; 
+  position: absolute;
   bottom: 5%;
-  left:50%;
-  transform:translateX(-50%);
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 40px;
   font-weight: 900;
   display: flex;

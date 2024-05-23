@@ -31,11 +31,12 @@ onMounted(() => {
       width="100%"
       :level="location.level">
       <KakaoMapMarker
-        v-for="plan in dayForPlanDtoList[pickedindex].scheduleDetailResponseDtoList"
+        v-for="(plan, index) in dayForPlanDtoList[pickedindex].scheduleDetailResponseDtoList"
         :key="plan.attractionInfoDto2.id"
         :lat="plan.attractionInfoDto2.latitude"
         :lng="plan.attractionInfoDto2.longitude"
         :clickable="true"
+        :order="index + 1"
         @onClickKakaoMapMarker="onClickMapMarker(area, index)">
       </KakaoMapMarker>
       <KakaoMapPolyline

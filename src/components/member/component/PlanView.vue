@@ -37,7 +37,8 @@ const moveToPlanEditForm = () => {
       haveplan: dayForPlanDtoList[pickedindex].scheduleDetailResponseDtoList.length !== 0,
     }">
     <PlanItem
-      v-for="plan in dayForPlanDtoList[pickedindex].scheduleDetailResponseDtoList"
+      v-for="(plan, index) in dayForPlanDtoList[pickedindex].scheduleDetailResponseDtoList"
+      :num="index"
       :key="plan.attractionInfoDto2.attractionId"
       :plan="plan.attractionInfoDto2"
       @click="getLatLng(plan.attractionInfoDto2)"

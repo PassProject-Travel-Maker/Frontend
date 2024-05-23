@@ -9,17 +9,19 @@ defineProps({
   plan: Object,
   mode: Boolean,
   checkbox: Boolean,
+  num: Number,
 });
 
-const emits = defineEmits(['click']);
+const emits = defineEmits(["click"]);
 const replaceImg = (e) => {
   e.target.src = "https://www.shoshinsha-design.com/wp-content/uploads/2020/05/noimage-760x460.png";
 };
 </script>
 
 <template>
-  <li  style="cursor: pointer" class="flex justify-between gap-x-6 py-5 pl plan_box h-24" >
-    <div class="flex min-w-0 gap-x-4">
+  <li style="cursor: pointer" class="flex justify-between gap-x-5 py-5 pl plan_box h-24">
+    <div class="w-8" v-if="!checkbox">{{ num + 1 }}</div>
+    <div class="flex w-5/6 gap-x-4">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -36,16 +38,15 @@ const replaceImg = (e) => {
         type="checkbox"
         :id="plan.attractionId"
         :value="plan.attractionId"
-        v-model="deletedchecked" 
-        v-if="checkbox"
-        />
-      <label :for="plan.attractionId"></label v-if="checkbox">
+        v-model="deletedchecked"
+        v-if="checkbox" />
+      <label :for="plan.attractionId" v-if="checkbox">11</label>
       <img
         class="h-12 w-12 flex-none rounded-full bg-gray-50"
         :src="plan.img"
         alt=""
         @error="replaceImg" />
-      <div class="min-w-0 flex-auto" @click="$emit('click')">
+      <div class="min-w-0 flex-auto w-" @click="$emit('click')">
         <p class="text-sm font-semibold leading-6 text-gray-900">{{ plan.title }}</p>
         <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ plan.addr }}</p>
       </div>
