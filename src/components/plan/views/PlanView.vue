@@ -4,7 +4,7 @@ import PlanItem from "@/components/plan/component/PlanItem.vue";
 import { storeToRefs } from "pinia";
 import { usePlanStore } from "@/stores/plan";
 import Draggable from "vue3-draggable";
-import { createPlanApi,modifyPlanApi } from "@/apis/planApi";
+import { createPlanApi, modifyPlanApi } from "@/apis/planApi";
 import { Switch } from "@headlessui/vue";
 import { useCategoryMapStore } from "@/stores/map.js";
 import { useRouter, useRoute } from "vue-router";
@@ -100,19 +100,17 @@ const saveSchedule = async () => {
 
   console.log(schedule);
 
-  if(route.params.mode !== undefined)
-  {
+  if (route.params.mode !== undefined) {
     //편집일때
     const response = await modifyPlanApi(schedule, route.params.mode);
     console.log(response);
     alert("수정이 완료되었습니다");
-  }
-  else{
+  } else {
     //생성일때
     const response = await createPlanApi(schedule);
     alert(response.data);
   }
-  router.push({name : "mypage"});
+  router.push({ name: "mypage" });
 };
 </script>
 
@@ -131,7 +129,7 @@ const saveSchedule = async () => {
 
   <!-- toggle -->
   <div class="toggle_container">
-    <div style="padding-right: 10px;">
+    <div style="padding-right: 10px">
       <span v-if="enabled">순서 바꾸기</span>
       <span v-else>선택 삭제</span>
     </div>
@@ -177,7 +175,7 @@ const saveSchedule = async () => {
 
   <div v-if="dayForPlanDtoList[pickedindex].scheduleForPlanDtoList.length === 0">
     <div class="corner-message">여행지를 선택해주세요!</div>
-    <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image"/>
+    <img src="@/assets/img/bill-pay.png" class="corner-image" alt="Corner Image" />
   </div>
   <div class="button_box" v-else>
     <button
@@ -190,7 +188,7 @@ const saveSchedule = async () => {
       @click="deleteSchedule"
       type="button"
       class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-      v-if="deletedchecked.length > 0" >
+      v-if="deletedchecked.length > 0">
       삭제
     </button>
   </div>
