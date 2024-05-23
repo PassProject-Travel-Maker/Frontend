@@ -1,10 +1,10 @@
 <script setup>
-import HeaderView from "@/components/common/HeaderView.vue";
+
 </script>
 
 <template>
   <div class="content">
-    <img id="section1" src="@/assets/img/people.svg" />
+    <img id="section1" src="@/assets/img/main/talk1.png" />
     <div id="title_box">
       <div id="title">자, 출발해볼까요?</div>
       <div id="subtitle">당신의 완벽한 여행이 기다리고 있습니다.</div>
@@ -27,14 +27,14 @@ import HeaderView from "@/components/common/HeaderView.vue";
 
 #section1 {
   position: absolute;
-  width: 40%;
-  top: 10%;
+  width: 90%;
+  bottom: -100px;
   left: 50%;
   transform: translateX(-50%);
 }
 #title_box {
   position: absolute;
-  bottom: 5%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 40px;
@@ -50,7 +50,7 @@ import HeaderView from "@/components/common/HeaderView.vue";
   font-weight: normal;
   color: #52525b;
 }
-#title {
+#title{
   margin-bottom: 30px;
 }
 button {

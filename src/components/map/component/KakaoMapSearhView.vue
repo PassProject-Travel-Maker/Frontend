@@ -74,7 +74,7 @@ const SearchPlace = () => {
 
         let lat = 0;
         let lng = 0;
-        areas.value.forEach((item) => {
+        areas.value.forEach((item) => {ㅎ
           lat += Number(item.latitude);
           lng += Number(item.longitude);
         });

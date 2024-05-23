@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+
+</script>
 
 <template>
   <div class="content">
@@ -15,8 +17,8 @@
         </button>
       </RouterLink>
     </div>
-    <img class="w-1/3" id="card1" src="@/assets/img/Card 1.svg" />
-    <img class="w-1/3" id="card2" src="@/assets/img/Card 2.svg" />
+    <img class="w-1/3" id="card1" data-aos="fade-zoom-in" data-aos-duration="1500" src="@/assets/img/main/window.png" />
+    <img class="w-1/3" id="card2" data-aos="fade-left" data-aos-duration="1500" src="@/assets/img/main/laptop-poses.png" />
   </div>
 </template>
 
@@ -36,8 +38,9 @@
 }
 #card2 {
   position: absolute;
-  top: 40%;
-  right: 10%;
+  bottom : 0;
+  right: 7%;
+   z-index: 10;
 }
 #title {
   font-size: 58px;

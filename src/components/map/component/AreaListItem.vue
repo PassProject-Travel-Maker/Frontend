@@ -21,9 +21,9 @@ const replaceImg = (e) => {
 
 <template>
   <li class="flex justify-between items-center gap-x-6 py-5 px-4">
-    <div class="flex w-5/6 gap-x-4" @click="$emit('showarea')">
+    <div class="flex w-5/6 gap-x-3" @click="$emit('showarea')">
       <img
-        class="h-16 w-16 flex-none rounded-full bg-gray-50"
+        class="h-12 w-12 flex-none rounded-full bg-gray-50"
         :src="area.img"
         alt=""
         @error="replaceImg" />

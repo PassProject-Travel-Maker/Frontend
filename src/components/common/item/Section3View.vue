@@ -8,8 +8,8 @@ import HeaderView from "@/components/common/HeaderView.vue";
       <div id="title">여행을 계획하는 <br />가장 쉬운 방법.</div>
       <div id="subtitle">몇 번의 클릭으로 완벽한 여행 경로를 설계하세요.</div>
     </div>
-    <img id="section1" src="@/assets/img/section1.svg" />
-    <img id="section2" src="@/assets/img/section2.svg" />
+    <img id="section1"  data-aos="flip-right" data-aos-duration="1500" src="@/assets/img/section1.svg" />
+    <img id="section2" data-aos="flip-left" data-aos-duration="1500" src="@/assets/img/section2.svg" />
     <img id="grid" src="@/assets/img/grid.svg" />
   </div>
 </template>
