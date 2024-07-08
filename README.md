@@ -28,17 +28,27 @@ https://www.youtube.com/watch?v=WxT72q7aYyE
 ## ✅ 기능
 
 ### 메인페이지
+![image](https://github.com/PassProject-Travel-Maker/Frontend/assets/42410000/2188e88e-3caf-4db3-9eee-c1d122776a13)
 
 ### 시,군,카테고리 별 여행지 검색
+![image](https://github.com/PassProject-Travel-Maker/Frontend/assets/42410000/b0805ecc-cb17-4deb-b4db-677799c00e4e)
 
 ### 카카오맵 여행지 검색
-
-### 여행지 추천
+![image](https://github.com/PassProject-Travel-Maker/Frontend/assets/42410000/eae0e49b-7f01-4259-9931-e2d46cafd47c)
 
 ### GPT 기반 여행지 추천
 ![image](https://github.com/PassProject-Travel-Maker/Frontend/assets/42410000/37ab0038-dd8a-4b82-947c-8c43b3463411)
+### 여행 계획 생성
 
 ### 내 여행 계획
+<div style="display: flex; justify-content: space-between;">
+  
+<img src="https://github.com/PassProject-Travel-Maker/Frontend/assets/42410000/e780be44-d6d4-4d76-94a9-3cbdfdbaae03" alt="image 1" style="width: 48%;"/>
+<img src="https://github.com/PassProject-Travel-Maker/Frontend/assets/42410000/2180632c-ef3a-4d75-9598-ffe172e20481" alt="image 2" style="width: 48%;"/>
 
-## ✅ 개발 후기
+</div>
+
+## ✅ 마이그레이션
+React, Typescript로 마이그레이션 진행중입니다.
+https://github.com/PassProject-Travel-Maker/React_Refactoring
 
