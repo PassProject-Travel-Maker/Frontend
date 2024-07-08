@@ -35,12 +35,10 @@ https://www.youtube.com/watch?v=WxT72q7aYyE
 
 ### 여행지 추천
 
-### 마이페이지
+### GPT 기반 여행지 추천
+![image](https://github.com/PassProject-Travel-Maker/Frontend/assets/42410000/37ab0038-dd8a-4b82-947c-8c43b3463411)
 
 ### 내 여행 계획
 
 ## ✅ 개발 후기
 
-- 권성민
-
-- 김민경
