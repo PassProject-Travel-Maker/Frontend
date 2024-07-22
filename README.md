@@ -6,7 +6,7 @@
 
 | 🍀 [권성민](https://github.com/kwonja) | 🍀 [김민경](https://github.com/minkyung73) |
 | :-----------------------------------: | :-----------------------------------: |
-| Frontend Developer | Backend Developer |
+| FE/BE | FE/BE |
 | <img src="https://avatars.githubusercontent.com/kwonja" alt="권성민" width="100" /> | <img src="https://avatars.githubusercontent.com/minkyung73" alt="김민경" width="100" /> |
 
 ## ✅프로젝트 목적
